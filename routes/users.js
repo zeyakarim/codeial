@@ -1,8 +1,16 @@
+// first import the express library
 const express = require('express');
+
+// second import the express.Router module
 const router = express.Router();
+
+// Third import the passport
 const passport = require('passport');
+
+// Import the userController file
 const usersController = require('../controllers/users_controllers');
 
+// if method is get then come this router
 router.get('/profile',passport.checkAuthentication, usersController.profile);
 
 router.get('/sign-up',usersController.signUp);

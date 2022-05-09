@@ -4,12 +4,16 @@
             <%= title %>
         </title>
         <link type="text/css" rel="stylesheet" href="/css/layout.css">
+        <link type="text/css" rel="stylesheet" href="/css/header.css">
+        <link type="text/css" rel="stylesheet" href="/css/footer.css">
         <%- style %>
     </head>
     <body>
         <%- include('_header'); %>
 
-        <%- body %>
+        <main id="layout-main">
+            <%- body %>
+        </main>
 
         <%- include('_footer');%>
 

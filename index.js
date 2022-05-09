@@ -11,6 +11,16 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 // const { Store } = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const sassMiddleware = require('node-sass-middleware');
+
+
+app.use(sassMiddleware({
+    src: './assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle: 'extended',
+    prefix: '/css'
+}));
 
 app.use(express.urlencoded());
 
@@ -19,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static('./assets'));
 
 app.use(expressLayout);
+
 
 //extract style and script from subpages into the layout
 app.set('layout extractStyles',true);
@@ -53,7 +64,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(passport.setAuthenthicatedUser);
+app.use(passport.setAuthenticatedUser);
 
 //use middleware and go express router folder
 app.use('/',require('./routes'));
