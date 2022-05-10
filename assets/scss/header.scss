@@ -1,0 +1,34 @@
+header{
+    // height: 60px;
+    background-color: midnightblue;
+    display: flex;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    h1{
+        margin: 0;
+        width: 80%;
+    }
+    ul{
+        list-style: none;
+        font-size: 20px;
+        padding: 0;
+        margin: 4px;
+        width: 15%;
+        display: flex;
+        li{
+            padding: 0px 10px;
+        }
+        li:nth-child(2n+1){
+            border-right: 2px solid lightgreen;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+    }
+
+}

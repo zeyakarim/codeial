@@ -1,4 +1,6 @@
 body {
-  margin: 0; }
+  margin: 0;
+  font-family: sans-serif; }
   body #layout-main {
-    height: 100%; }
+    height: 100%;
+    margin-top: 6%; }

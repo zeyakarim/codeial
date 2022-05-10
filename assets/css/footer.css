@@ -1,0 +1,21 @@
+footer {
+  background-color: #0A2541;
+  color: #ffffff;
+  padding: 15px;
+  display: flex; }
+  footer #logo-name {
+    display: flex; }
+    footer #logo-name h1 {
+      margin: 0;
+      padding: 15px 10px; }
+  footer p {
+    margin: 2px; }
+  footer #home-profile-footer {
+    font-size: 19px;
+    margin-top: 10px;
+    margin-left: 50px; }
+    footer #home-profile-footer p {
+      padding: 5px; }
+      footer #home-profile-footer p a {
+        color: white;
+        text-decoration: none; }
