@@ -8,7 +8,7 @@ const router = express.Router();
 const passport = require('passport');
 
 // Import the userController file
-const usersController = require('../controllers/users_controllers');
+const usersController = require('../controllers/users_controller');
 
 // if method is get then come this router
 router.get('/profile',passport.checkAuthentication, usersController.profile);

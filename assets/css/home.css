@@ -1,0 +1,6 @@
+.post-comments-list div {
+  margin: 10px 0px;
+  background-color: lightgray;
+  padding: 5px 10px;
+  border-radius: 6px;
+  width: 90px; }

@@ -1,8 +1,40 @@
-<h1>Sign Up</h1>
-<form action="/users/create" method="POST">
-    <input type="name" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-    <input type="submit" value="Sign Up">
-</form>
+<link rel="stylesheet" href="/css/user_sign_up.css">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+
+<div id="sign-up-container">
+    <div id="sign-up-page">
+        <div id="img-container">
+            <div>
+                <p>Codeial</p>
+                <h1>Codeial is the Social Media Website</h1>
+            </div>
+            <img src="https://student.ekidenglish.edu.vn/assets/image/img_login.png"width= '100%' alt="">
+        </div>
+        <div id="sign-up-form">
+            <h2>Sign Up To Codeial</h2>
+            <form action="/users/create" method="POST">
+                <div>
+                    <h4>Name</h4>
+                    <input type="name" name="name" required>
+                </div>
+
+                <div>
+                    <h4>Email Address</h4>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div>
+                    <h4>Password</h4>
+                    <input type="password" name="password" required>
+                </div>
+                
+                <div>
+                    <h4>Confirm Password</h4>
+                    <input type="password" name="confirm_password" required>
+                </div>
+                
+                <input type="submit" value="Sign Up" id="btn">
+            </form>
+        </div>
+    </div>
+</div>

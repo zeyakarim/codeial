@@ -1,0 +1,56 @@
+#sign-in-page {
+  height: 100%;
+  margin-top: -6%;
+  padding-top: 6%;
+  background: linear-gradient(to right, #D99BD9, #EFC98F); }
+
+#sign-in-container {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  background-color: white;
+  border-radius: 10px; }
+  #sign-in-container #sign-in-form {
+    width: 50%;
+    margin: auto;
+    padding-left: 10%; }
+    #sign-in-container #sign-in-form div {
+      margin: 25px 0px; }
+      #sign-in-container #sign-in-form div h4 {
+        margin: 8px; }
+      #sign-in-container #sign-in-form div input {
+        width: 70%;
+        border: 0;
+        background-color: #e4e9ed;
+        font-size: 15px;
+        padding: 8px;
+        border-radius: 5px; }
+      #sign-in-container #sign-in-form div input:focus {
+        outline: none; }
+    #sign-in-container #sign-in-form #btn {
+      width: 100px;
+      color: white;
+      font-weight: bold;
+      background-color: #e91e63;
+      margin-top: 10px;
+      border: 0;
+      font-size: 16px;
+      padding: 7px;
+      border-radius: 5px;
+      cursor: pointer; }
+  #sign-in-container #sign-in-container-box {
+    width: 40%;
+    background-color: #F4D184;
+    color: black;
+    border-radius: 0px 10px 10px 0px;
+    padding: 2px; }
+    #sign-in-container #sign-in-container-box #content {
+      padding: 20px 30px 10px;
+      margin: 0; }
+      #sign-in-container #sign-in-container-box #content h1 {
+        text-align: center; }
+      #sign-in-container #sign-in-container-box #content p {
+        padding-left: 30px;
+        font-family: 'Pacifico', cursive; }
+    #sign-in-container #sign-in-container-box #img-container img {
+      height: inherit; }
