@@ -1,0 +1,16 @@
+<li>
+    <% if(user && user.id == comment.user.id){ %>
+        <small>
+            <a href="/comments/destroy/<%= comment.id%>">X</a>
+        </small>
+    <% } %>
+
+    <div style="margin: 10px 0px;">
+        <h4 style="margin: 0;">
+            <%= comment.user.name %>
+        </h4>
+        <p style="margin: 0;">
+            <%= comment.content %>
+        </p>
+    </div>
+</li>

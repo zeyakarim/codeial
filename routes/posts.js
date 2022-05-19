@@ -12,5 +12,6 @@ const postController = require('../controllers/posts.controller');
 
 // if the method post and url is create then come here and check user is authenticate
 router.post('/create',passport.checkAuthentication, postController.create);
+router.get('/destroy/:id',passport.checkAuthentication,postController.destroy);
 
 module.exports = router;
