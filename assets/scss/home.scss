@@ -1,10 +1,25 @@
-.post-comments-list{
-    div{
-        margin: 10px 0px;
-        // display: inline-block;
-        background-color: lightgray;
-        padding: 5px 10px;
-        border-radius: 6px;
-        width: 90px;
+#main-container{
+    display: flex;
+    #feed-posts{
+        width: 75%;
+        padding: 10px;
+        .post-comments-list{
+            ul{
+                list-style: none;
+            }
+            div{
+                margin: 10px 5px;
+                display: inline-block;
+                background-color: lightgray;
+                padding: 10px 15px;
+                border-radius: 6px;
+                // width: 90px;
+            }
+        }
+    }
+    #user-friends{
+        width: 25%;
+        padding: 10px;
+        border-left: 1px solid gray;
     }
 }

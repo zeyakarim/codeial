@@ -1,5 +1,6 @@
 // require the post model schema
 const Post = require('../models/post');
+const User = require('../models/user');
 
 module.exports.home = function(req,res){
 
@@ -17,11 +18,14 @@ module.exports.home = function(req,res){
             console.log('error in fetching posts from db');
             return;
         }
-           
-        return res.render('home',{
-            title : "Home",
-            posts: post
+        User.find({},function(err,users){
+            return res.render('home',{
+                title : "Home",
+                posts: post,
+                all_users: users
+            });
         });
+        
     });
 }
 
