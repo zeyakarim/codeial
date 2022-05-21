@@ -1,32 +1,32 @@
-// require the post model schema
+// require the post and user model schema
 const Post = require('../models/post');
 const User = require('../models/user');
 
-module.exports.home = function(req,res){
+module.exports.home = async function(req,res){
 
-    // populate the user of each post
-    Post.find({})
-    .populate('user')
-    .populate({
-        path: 'comments',
-        populate :{
-            path: 'user'
-        }
-    })
-    .exec(function(err,post){
-        if(err){
-            console.log('error in fetching posts from db');
-            return;
-        }
-        User.find({},function(err,users){
-            return res.render('home',{
-                title : "Home",
-                posts: post,
-                all_users: users
-            });
+    try{
+        // populate the user of each post
+        let post = await Post.find({})
+        .populate('user')
+        .populate({
+            path: 'comments',
+            populate :{
+                path: 'user'
+            }
         });
         
-    });
+        let users = await User.find({});
+
+        return res.render('home',{
+            title : "Home",
+            posts: post,
+            all_users: users
+        });
+
+    }catch(err){
+        console.log('Error',err);
+        return;
+    }         
 }
 
 

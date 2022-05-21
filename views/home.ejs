@@ -25,18 +25,15 @@
     </section>
     
     <section id="user-friends">
-    
-        <!-- <% if (user){ %> -->
-            <h4>Friends</h4>
-                <% for (user of all_users){%>
-                    <p>
-                        <a href="/users/profile/<%= user.id%>">
-                            <%= user.name%>
-                        </a>
-                    </p>
-                <% } %>
-                    
-        <!-- <% } %> -->
+        <h4>Friends</h4>
+            <% for (user of all_users){%>
+                <p>
+                    <a href="/users/profile/<%= user.id%>">
+                        <%= user.name%>
+                    </a>
+                </p>
+            <% } %>
+            
     </section>
     
 </div>
