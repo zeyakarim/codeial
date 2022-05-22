@@ -7,16 +7,17 @@ header{
     position: fixed;
     width: 100%;
     top: 0;
+    justify-content: space-between;
     h1{
         margin: 0;
-        width: 80%;
+        // width: 80%;
     }
     ul{
         list-style: none;
         font-size: 20px;
-        padding: 0;
+        padding-right: 10px;
         margin: 4px;
-        width: 17%;
+        // width: 17%;
         display: flex;
         li{
             padding: 0px 10px;

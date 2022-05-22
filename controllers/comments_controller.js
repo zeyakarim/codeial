@@ -19,11 +19,12 @@ module.exports.create = async function(req,res){
             post.comments.push(comment);
             post.save();
 
+            req.flash('success','Comment are published');
             res.redirect('/');
         }
     }catch(err){
         console.log('Error',err);
-        return;
+        return res.redirect('back');
     }
 }
 
@@ -46,6 +47,7 @@ module.exports.destroy = async function(req,res){
             // REMOVE THE COMMENT ID INSIDE THE POST.COMMENTS ARRAY
             let post = await Post.findByIdAndUpdate(postId, {$pull : {comments: req.params.id}});
 
+            req.flash('success','Comment are Deleted Successfully')
             return res.redirect('back');
 
         }else{
@@ -54,6 +56,6 @@ module.exports.destroy = async function(req,res){
         }
     }catch(err){
         console.log('Error',err);
-        return;
+        return res.redirect('back');
     }
 }

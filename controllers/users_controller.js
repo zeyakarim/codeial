@@ -64,10 +64,12 @@ module.exports.create = function(req,res){
                     return;
                 }
                 // console.log(user);
+                req.flash('success','Sign-up Successfully');
                 return res.redirect('/users/sign-in');
             });
         }else{
             // handle user is found in db
+            req.flash('error','Please fill the Correct information');
             return res.redirect('back');
         }
     });
