@@ -19,7 +19,18 @@ module.exports.create = async function(req,res){
             post.comments.push(comment);
             post.save();
 
-            req.flash('success','Comment are published');
+            if(req.xhr){
+                comment = await comment.populate('user','name');
+                
+                return res.status(200).json({
+                    data: {
+                        comment : comment
+                    },
+                    message: 'Comment is created'
+                });
+            }
+
+            req.flash('success','Comment published');
             res.redirect('/');
         }
     }catch(err){
@@ -30,7 +41,7 @@ module.exports.create = async function(req,res){
 
 // REMOVE THE COMMENT INSIDE DB AND WEBSITE
 module.exports.destroy = async function(req,res){
-
+    // console.log(req.body);
     try{
         // FIRST FIND THE COMMENT INSIDE THE DB
         let comment = await Comment.findById(req.params.id);
@@ -46,6 +57,16 @@ module.exports.destroy = async function(req,res){
 
             // REMOVE THE COMMENT ID INSIDE THE POST.COMMENTS ARRAY
             let post = await Post.findByIdAndUpdate(postId, {$pull : {comments: req.params.id}});
+
+            if(req.xhr){
+
+                return res.status(200).json({
+                    data: {
+                        comment_Id : req.params.id
+                    },
+                    message: 'Comment deleted'
+                });
+            }
 
             req.flash('success','Comment are Deleted Successfully')
             return res.redirect('back');
