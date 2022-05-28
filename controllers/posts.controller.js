@@ -1,7 +1,7 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 
-// CREATE COMMENT INSIDE DB
+// CREATE Post INSIDE DB
 module.exports.create = async function(req,res){
     try{
         let post = await Post.create({

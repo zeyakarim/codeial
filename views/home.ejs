@@ -1,13 +1,25 @@
 <link rel="stylesheet" href="/css/home.css">
 
+
 <div id="main-container">
+    <section id="user-profile">
+        <% if(user){ %>
+            <div style="display: flex;">
+                <img src="<%= user.avatar %>" alt="<%= user.name%>" width="50">
+                <p><%= user.name %></p>
+            </div>
+        <% } %>
+    </section>
+    
+
     <section id="feed-posts">
+
     
         <% if(user){%>
     
             <h4>Posts</h4>
             <form action="/posts/create" id="new-post-form" method="post">
-                <textarea name="content" cols="30" rows="3" placeholder="Text Area..." required></textarea>
+                <textarea name="content" cols="40" rows="2" placeholder="Text Area..." required></textarea>
                 <input type="submit" value="Post">
             </form>
         <% } %>
@@ -27,11 +39,12 @@
     <section id="user-friends">
         <h4>Friends</h4>
             <% for (user of all_users){%>
-                <p>
+                <div>
+                    <img src="<%= user.avatar %>" alt="user.name" width="50">
                     <a href="/users/profile/<%= user.id%>">
-                        <%= user.name%>
-                    </a>
-                </p>
+                        <p><%= user.name%></p>
+                    </a> 
+                </div>
             <% } %>
             
     </section>

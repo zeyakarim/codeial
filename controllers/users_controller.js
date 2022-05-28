@@ -1,4 +1,8 @@
+const { exists } = require('../models/user');
 const User = require('../models/user');
+const fs = require('fs');
+const path = require('path');
+
 
 // render profile page
 module.exports.profile = function(req,res){
@@ -10,14 +14,51 @@ module.exports.profile = function(req,res){
     });   
 }
 
-module.exports.update = function(req,res){
+module.exports.update = async function(req,res){
     // if req.user.id is equal to req.params.id both are same then come here
-    if(req.user.id == req.params.id){
-        User.findByIdAndUpdate(req.params.id, req.body,function(err,user){
+    if (req.user.id == req.params.id){
+        try{
+            let user = await User.findById(req.params.id);
+            
+            User.uploadedAvatar(req,res,function(err){
+                if(err){
+                    console.log('*****Multer Error: ',err);
+                }
+                user.name = req.body.name;
+                user.email = req.body.email;
+
+                // console.log(req.file);
+                if(req.file){
+                    // first it will go userSchema.uploadedAvatar function and save 
+                    // the file destination and filename in the localstorage/multer storage
+
+                    // if will check if user.avatar exist or not then go inside this
+                    if (user.avatar){
+                        let currentAvatarPath = path.join(__dirname,'..',user.avatar);
+                        // console.log(currentAvatarPath);
+
+                        // check if file already exist in currentAvatarPath then he give true otherwise false
+                        if(fs.existsSync(currentAvatarPath)){
+
+                            // it remove the file from currentAvatarPath
+                            fs.unlinkSync(currentAvatarPath);
+                        }
+                    }
+                    // this is saving the path of the upload into the avatar field in the user
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                }
+                user.save();
+                return res.redirect('back');
+            });
+            
+        }catch(err){
+            req.flash('error',err);
             return res.redirect('back');
-        });
+        }
+    
     }else{
         // if req.user.id is not equal to req.params.id then come here
+        req.flash('error','Unauthorized');
         return res.status(401).send('Unauthorized');
     }
 }

@@ -1,8 +1,85 @@
 #main-container{
     display: flex;
+    background-color: #F0F2F5;
+    padding: 20px;
+    #user-profile{
+        width: 20%;
+        padding: 15px 20px 20px;
+        // border-right: 1px solid gray;
+        div{
+            p{
+                padding-left: 10px;
+                font-weight: bold;
+            }
+        }
+    }
     #feed-posts{
-        width: 75%;
-        padding: 10px;
+        width: 40%;
+        padding: 10px 40px;
+        margin: auto;
+        background-color: #ffffff;
+        border-radius: 20px;
+        #new-post-form{
+            textarea{
+                background-color: lightgray;
+                resize: none;
+                border: 0;
+                border-radius: 20px;
+                padding: 15px 20px 5px;
+                font-size: 17px;
+                margin: 0px auto;
+            }
+            textarea:focus{
+                outline: none;
+            }
+            input[type= submit]{
+                border: 0;
+                background-color: #191970;
+                color: white;
+                padding: 8px;
+                border-radius: 10px;
+                font-size: 16px;
+                width: 60px;
+            }
+        }
+        #posts-list-controller{
+            ul{
+                li{
+                    margin: 20px 0px;
+                }
+                div{
+                    h4{
+                        margin: 0px 4px;
+                    }
+                }
+                p{
+                    margin: 4px 0px;
+                }
+            }
+        }
+        .post-comments{
+            margin: 10px 0px;
+            form{
+                input[type =text]{
+                    border: 0;
+                    background-color: #d5dbe4;
+                    padding: 8px 12px;
+                    border-radius: 20px;
+                    width: 55%;
+                }
+                input:focus{
+                    outline: none;
+                }
+                input[type = submit]{
+                    border: 0;
+                    background-color: #1A4CFF;
+                    color: white;
+                    padding: 8px;
+                    border-radius: 15px;
+                    font-size: 16px;
+                }
+            }
+        }
         .post-comments-list{
             ul{
                 list-style: none;
@@ -15,11 +92,27 @@
                 border-radius: 6px;
                 // width: 90px;
             }
+
         }
     }
     #user-friends{
-        width: 25%;
+        width: 20%;
         padding: 10px;
-        border-left: 1px solid gray;
+        // border-left: 1px solid gray;
+        div{
+            display: flex;
+            margin: 10px 5px;
+            img{
+                border-radius: 50%;
+            }
+            p{
+                margin-left: 5px;
+            }
+        }
+        a{
+            text-decoration: none;
+            // color: darkblue;
+            color: black;
+        }
     }
 }

@@ -1,5 +1,5 @@
 {
-    // method to submit the form data for new post using AJAX
+    // method to submit the form data for new comment using AJAX
     let createComment = function(newCommentForm){
 
         $(newCommentForm).submit(function(e){
@@ -11,7 +11,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/comments/create',
-                // WE NEED TO SEND THE DATA,THAT WE ARE CREATING POST
+                // WE NEED TO SEND THE DATA,THAT WE ARE CREATING COMMENT
                 data: $(newCommentForm).serialize(),
                 success: function(data){
                     let newComment = newCommentDom(data.data.comment);
@@ -54,9 +54,6 @@
                     </div>
                 </li>`);
     }
-        
-
-
 
     let deleteComment = function(deleteLink){
         // console.log($(deleteLink));
@@ -89,6 +86,7 @@
     let newPostForm1 = $('.post_comments');
     for (let i of newPostForm1){
         createComment(i);
+        // console.log(i);
     }
 
     let deleteCommentbutton = $('.delete-comment-button');

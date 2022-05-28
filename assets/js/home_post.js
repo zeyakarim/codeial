@@ -1,6 +1,8 @@
 {
     // method to submit the form data for new post using AJAX
     let createPost = function(){
+
+        // FETCH THE POST FORM USING ID
         let newPostForm = $('#new-post-form');
 
         newPostForm.submit(function(e){
@@ -12,17 +14,19 @@
             $.ajax({
                 type: 'POST',
                 url: '/posts/create',
-                // WE NEED TO SEND THE DATA,THAT WE ARE CREATING POST
+
+                // WE NEED TO SEND THE DATA,THAT WE ARE CREATING POST AND CONVERT INTO JSON FORMAT
                 data: newPostForm.serialize(),
+
+                // if data is successfully send and after that take response from controller & then print the data
                 success: function(data){
                     let newPost = newPostDom(data.data.post);
                     $('#posts-list-controller>ul').prepend(newPost);
 
                     // THIS .delete-post-button INSIDE newPost
                     deletePost($(' .delete-post-button',newPost));
-
-
-                    // console.log(data);
+                    
+                    // THEN SHOW THE FLATTY MESSAGE
                     new Noty({
                         theme: 'relax',
                         text: 'Post is Published',
@@ -67,7 +71,7 @@
                         </div>
                     </div> 
 
-                </li>`)
+                </li>`);
     }
 
     
@@ -79,7 +83,7 @@
         $(deleteLink).click(function(e){
             e.preventDefault();
 
-            // DELETE USING AJAX
+            // DELETE  A POST USING AJAX
             $.ajax({
                 type: 'get',
                 // THIS IS HOW YOU GET THE VALUE OF THE href INSIDE <a> TAG
@@ -98,18 +102,16 @@
                 },error: function(error){
                     console.log(error.responseText);
                 }
-            })
-        })
+            });
+        });
     }
-     // method to iterate over all post  delete button
-    let iterate_post=function(){
-        var loop=$(' .delete-post-button');
-        for(i of loop){
-            deletePost(i);
-        }
+
+    // method to iterate over all post  delete button
+    let deletePostButton =$('.delete-post-button');
+    for(let i of deletePostButton){
+        deletePost(i);
     }
+    
     // call this function
     createPost();
-    iterate_post();
-
 }

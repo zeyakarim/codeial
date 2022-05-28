@@ -47,7 +47,7 @@ module.exports.destroy = async function(req,res){
         let comment = await Comment.findById(req.params.id);
 
         // CHECK COMMENT.USER.ID AND REQUEST.USER.ID BOTH ARE SAME
-        if(comment.user == req.user.id){
+        if(comment.user == req.user.id ){
 
             // STORE THE POST ID
             let postId = comment.post;
