@@ -1,4 +1,4 @@
-<li id="post-<%= post._id%>">
+<li id="post-<%= post._id%>" style="margin: 20px 0px;">
     <div style="display: flex;">
         <% if(user && user.id == post.user.id){ %>
             <small>
@@ -11,11 +11,11 @@
     </div>
     <p><%= post.user.name%></p>
 
-        <!-- <%= post.content%>
-        <br>
-        <small>
-            <%= post.user.name%>
-        </small> -->
+    <!-- <%= post.content%>
+    <br>
+    <small>
+        <%= post.user.name%>
+    </small> -->
     
 
     <div class="post-comments">

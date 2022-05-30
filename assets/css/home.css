@@ -31,9 +31,8 @@
       padding: 8px;
       border-radius: 10px;
       font-size: 16px;
-      width: 60px; }
-    #main-container #feed-posts #posts-list-controller ul li {
-      margin: 20px 0px; }
+      width: 60px;
+      cursor: pointer; }
     #main-container #feed-posts #posts-list-controller ul div h4 {
       margin: 0px 4px; }
     #main-container #feed-posts #posts-list-controller ul p {
@@ -54,7 +53,8 @@
         color: white;
         padding: 8px;
         border-radius: 15px;
-        font-size: 16px; }
+        font-size: 16px;
+        cursor: pointer; }
     #main-container #feed-posts .post-comments-list ul {
       list-style: none; }
     #main-container #feed-posts .post-comments-list div {
