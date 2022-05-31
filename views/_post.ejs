@@ -1,15 +1,16 @@
 <li id="post-<%= post._id%>" style="margin: 20px 0px;">
     <div style="display: flex;">
+        <img src="<%= post.user.avatar%>" alt="<%= post.user.name%>" width="40">
+        <p><%= post.user.name%></p>
         <% if(user && user.id == post.user.id){ %>
             <small>
                 <a class="delete-post-button" href="/posts/destroy/<%=post.id%>">X</a>
             </small>
         <% } %>
-        <h4>
-            <%= post.content%>
-        </h4>
     </div>
-    <p><%= post.user.name%></p>
+    <p>
+        <%= post.content%>
+    </p>
 
     <!-- <%= post.content%>
     <br>

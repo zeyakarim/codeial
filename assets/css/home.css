@@ -33,10 +33,14 @@
       font-size: 16px;
       width: 60px;
       cursor: pointer; }
-    #main-container #feed-posts #posts-list-controller ul div h4 {
-      margin: 0px 4px; }
-    #main-container #feed-posts #posts-list-controller ul p {
-      margin: 4px 0px; }
+    #main-container #feed-posts #posts-list-controller ul li div img {
+      border-radius: 50%; }
+    #main-container #feed-posts #posts-list-controller ul li div small {
+      margin-top: 14px; }
+    #main-container #feed-posts #posts-list-controller ul li div p {
+      margin: 14px 8px 6px; }
+    #main-container #feed-posts #posts-list-controller ul li p {
+      margin: 8px; }
     #main-container #feed-posts .post-comments {
       margin: 10px 0px; }
       #main-container #feed-posts .post-comments form input[type=text] {
@@ -44,20 +48,20 @@
         background-color: #d5dbe4;
         padding: 8px 12px;
         border-radius: 20px;
-        width: 55%; }
+        width: 60%; }
       #main-container #feed-posts .post-comments form input:focus {
         outline: none; }
       #main-container #feed-posts .post-comments form input[type=submit] {
         border: 0;
         background-color: #1A4CFF;
         color: white;
-        padding: 8px;
+        padding: 8px 12px;
         border-radius: 15px;
         font-size: 16px;
         cursor: pointer; }
     #main-container #feed-posts .post-comments-list ul {
       list-style: none; }
-    #main-container #feed-posts .post-comments-list div {
+    #main-container #feed-posts .post-comments-list .comment-details {
       margin: 10px 5px;
       display: inline-block;
       background-color: lightgray;

@@ -11,7 +11,9 @@ module.exports.create = async function(req,res){
 
         if(req.xhr){
             // after populate it will give only user name because i will specified only user name
-            post = await post.populate('user','name');
+            // post = await post.populate('user','name');
+
+            post = await post.populate('user');
 
             return res.status(200).json({
                 data: {

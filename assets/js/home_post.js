@@ -45,16 +45,13 @@
     let newPostDom = function(post){
         return $(`<li id="post-${post._id}">
                     <div style = "display: flex;">
+                        <img src="${ post.user.avatar}" alt="${post.user.name}" width="40">
+                        <p>${ post.user.name }</p>
                         <small>
                             <a class="delete-post-button" href="/posts/destroy/${post._id}">X</a>
                         </small>
-                        <h4>
-                        ${ post.content }
-                        </h4>
                     </div>
-                    <small>
-                        ${ post.user.name }
-                    </small>
+                    <p>${ post.content }</p>
                     
 
                     <div class="post-comments">

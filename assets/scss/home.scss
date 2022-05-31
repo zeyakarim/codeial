@@ -46,15 +46,21 @@
         #posts-list-controller{
             ul{
                 li{
-                    // margin: 20px 0px;
-                }
-                div{
-                    h4{
-                        margin: 0px 4px;
+                    div{
+                        img{
+                            border-radius: 50%;
+                        }
+                        small{
+                            margin-top: 14px;
+                        }
+                        p{
+                            margin: 14px 8px 6px;
+                        }
                     }
-                }
-                p{
-                    margin: 4px 0px;
+                    p{
+                        margin: 8px;
+                    }
+                    
                 }
             }
         }
@@ -66,7 +72,7 @@
                     background-color: #d5dbe4;
                     padding: 8px 12px;
                     border-radius: 20px;
-                    width: 55%;
+                    width: 60%;
                 }
                 input:focus{
                     outline: none;
@@ -75,7 +81,7 @@
                     border: 0;
                     background-color: #1A4CFF;
                     color: white;
-                    padding: 8px;
+                    padding: 8px 12px;
                     border-radius: 15px;
                     font-size: 16px;
                     cursor: pointer;
@@ -86,7 +92,7 @@
             ul{
                 list-style: none;
             }
-            div{
+            .comment-details{
                 margin: 10px 5px;
                 display: inline-block;
                 background-color: lightgray;
