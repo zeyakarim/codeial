@@ -11,6 +11,11 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 // api authenticate using passport-jwt
 const passportJWT = require('./config/passport-jwt-strategy');
+
+// using passportGoogle auth 
+const passportGoogle = require('./config/passport-google-oauth2-strategy');
+
+const passportFacebook = require('./config/passport-facebook-strategy');
 // const { Store } = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');

@@ -28,6 +28,22 @@
             padding-left: 15%;
             div{
                 margin: 18px 0px;
+                .google{
+                    background-color: red;
+                }
+                .facebook{
+                    background-color: #183153;
+                    i{
+                        padding: 0px 3px;
+                    }
+                }
+                a{  
+                    padding: 10px;
+                    color: white;
+                    margin-right: 30px;
+                    border-radius: 50%;
+                    box-shadow: 0px 0px 4px 1px grey;
+                }
                 input{
                     width: 70%;
                     border: 0;

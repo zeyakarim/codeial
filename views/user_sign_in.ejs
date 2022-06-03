@@ -1,10 +1,25 @@
 <link rel="stylesheet" href="/css/user_sign_in.css">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
 
 <div id="sign-in-page">
     <div id="sign-in-container">
         <div id="sign-in-form">
             <h1>Sign In To Codeial</h1>
+
+            <div style="display: flex;">
+                <p>
+                    <a class="google" href="/users/auth/google">
+                        <i class="fa-brands fa-google"></i>
+                    </a>
+                    <!-- <a href="/users/auth/google">Google sign-up/sign-in</a> -->
+                </p>
+                <p>
+                    <a class="facebook" href="/users/auth/facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                </p>
+            </div>
 
             <form action="/users/create-session" method="post" id="sign-in">
                 <div>
