@@ -1,7 +1,6 @@
 #sign-in-page {
   height: 100%;
-  margin-top: -6%;
-  padding-top: 6%;
+  padding: 20px;
   background: linear-gradient(to right, #D99BD9, #EFC98F); }
 
 #sign-in-container {

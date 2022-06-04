@@ -13,12 +13,23 @@
             }
         }
     }
+    #feed-posts::-webkit-scrollbar{
+        display: none;
+    }
     #feed-posts{
         width: 40%;
         padding: 10px 40px;
         margin: auto;
         background-color: #ffffff;
         border-radius: 20px;
+        // overflow-y: auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        /* hide scrollbar but allow scrolling */
+        -ms-overflow-style: none;
+        scrollbar-width: none; 
+        overflow-y: scroll; 
         #new-post-form{
             textarea{
                 background-color: lightgray;
@@ -103,10 +114,39 @@
 
         }
     }
+      
     #user-friends{
         width: 20%;
         padding: 10px;
-        // border-left: 1px solid gray;
+
+        /* width */
+        #user-friends-container::-webkit-scrollbar{
+            width: 8px;
+        }
+
+        /* Track - whether this scrollbar is scroll*/
+        #user-friends-container::-webkit-scrollbar-track{
+            box-shadow: inset 0 0 5px gray;
+            border-radius: 8px;
+        }
+
+        /* Handle - scrollbar inside thumb scrolling*/
+        #user-friends-container::-webkit-scrollbar-thumb{
+            background-color: gray;
+            border-radius: 10px;
+        }
+        
+        #user-friends-container{
+            display: flex;
+            flex-direction: column;
+            overflow-y: hidden;
+            height: 100vh;
+        }
+        #user-friends-container:hover{
+            overflow-y: scroll;
+        } 
+       
+
         div{
             display: flex;
             margin: 10px 5px;

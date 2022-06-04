@@ -2,6 +2,7 @@
 const Comment = require('../models/comment');
 
 const Post = require('../models/post');
+const commentsMailer = require('../mailers/comments_mailer');
 
 // CREATE COMMENT INSIDE DB
 module.exports.create = async function(req,res){
@@ -18,10 +19,12 @@ module.exports.create = async function(req,res){
             // ADD THE comment.id INSIDE POST.COMMENTS ARRAY
             post.comments.push(comment);
             post.save();
+            comment = await comment.populate('user','name avatar email');
+
+            commentsMailer.newComment(comment);
 
             if(req.xhr){
                 // comment = await comment.populate('user','name');
-                comment = await comment.populate('user');
                 
                 return res.status(200).json({
                     data: {

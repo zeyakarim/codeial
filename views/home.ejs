@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/css/home.css">
 
 
+
 <div id="main-container">
     <section id="user-profile">
         <% if(user){ %>
@@ -38,6 +39,7 @@
     
     <section id="user-friends">
         <h4>Friends</h4>
+        <div id="user-friends-container">
             <% for (user of all_users){%>
                 <div>
                     <img src="<%= user.avatar %>" alt="user.name" width="50">
@@ -46,7 +48,7 @@
                     </a> 
                 </div>
             <% } %>
-            
+        </div>
     </section>
     
 </div>

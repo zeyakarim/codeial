@@ -8,12 +8,21 @@
     #main-container #user-profile div p {
       padding-left: 10px;
       font-weight: bold; }
+  #main-container #feed-posts::-webkit-scrollbar {
+    display: none; }
   #main-container #feed-posts {
     width: 40%;
     padding: 10px 40px;
     margin: auto;
     background-color: #ffffff;
-    border-radius: 20px; }
+    border-radius: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* hide scrollbar but allow scrolling */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll; }
     #main-container #feed-posts #new-post-form textarea {
       background-color: lightgray;
       resize: none;
@@ -69,7 +78,25 @@
       border-radius: 6px; }
   #main-container #user-friends {
     width: 20%;
-    padding: 10px; }
+    padding: 10px;
+    /* width */
+    /* Track - whether this scrollbar is scroll*/
+    /* Handle - scrollbar inside thumb scrolling*/ }
+    #main-container #user-friends #user-friends-container::-webkit-scrollbar {
+      width: 8px; }
+    #main-container #user-friends #user-friends-container::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px gray;
+      border-radius: 8px; }
+    #main-container #user-friends #user-friends-container::-webkit-scrollbar-thumb {
+      background-color: gray;
+      border-radius: 10px; }
+    #main-container #user-friends #user-friends-container {
+      display: flex;
+      flex-direction: column;
+      overflow-y: hidden;
+      height: 100vh; }
+    #main-container #user-friends #user-friends-container:hover {
+      overflow-y: scroll; }
     #main-container #user-friends div {
       display: flex;
       margin: 10px 5px; }
