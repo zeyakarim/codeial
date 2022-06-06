@@ -1,8 +1,12 @@
-const { exists } = require('../models/user');
 const User = require('../models/user');
 const fs = require('fs');
 const path = require('path');
+// import the forgot_password file
+const forgotPasswordMailer = require('../mailers/forgot_password_mailer');
 
+// import the forgot_password model
+const ForgotPasswordModel = require('../models/forgot_password');
+const crypto = require('crypto');
 
 // render profile page
 module.exports.profile = function(req,res){
@@ -122,9 +126,74 @@ module.exports.createSession = function(req,res){
     return res.redirect('/');
 }
 
+// forgot password
+module.exports.forgotPassword = function(req,res){
+    return res.render('forgot_password',{
+        title: 'Codeial | Forgot Password'
+    });
+}
+
+module.exports.sendLinkPassword = async function(req,res){
+    let user = await User.findOne({email:req.body.email});
+
+    if(user){
+        let user_password = await ForgotPasswordModel.create({
+            user: user._id,
+            accessToken: crypto.randomBytes(18).toString('hex'),
+            isValid: true
+        });
+
+        user_password = await user_password.populate('user');
+
+        // send this user_password the forgotpasswordmailer file
+        forgotPasswordMailer.newPassword(user_password);
+        req.flash('success','please check email reset link send');
+        return res.redirect('back');
+    }
+    
+    return res.redirect('back');
+}
+
+module.exports.newPassword = async function(req,res){
+    let accessToken = await ForgotPasswordModel.findOne({accessToken: req.query.accessToken});
+
+    // if accessToken in db 
+    if(accessToken){
+        // first find the accessToken then update the isvalid to false
+        return res.render('new_password',{
+            title: 'New Password | Codeial',
+            userData: accessToken
+        }); 
+    }
+    req.flash('success','please reset password again');
+    return res.redirect('/users/reset-password');
+}
+
+
+module.exports.updateNewPassword = async function(req,res){
+
+    // check password and confirm_password both are same
+    if (req.body.password == req.body.confirm_password){
+
+        // find the accessToken id 
+        let accessToken = await ForgotPasswordModel.findByIdAndUpdate(req.query.id,{isValid: false});
+        
+        // password update in User model schema
+        await User.findByIdAndUpdate(accessToken.user, req.body);
+
+        req.flash('success','Password updated successfully');
+        
+        return res.redirect('/');
+    }
+
+    req.flash('success','please write password & confirm_password same');
+    return res.redirect('back');
+}
+
 // destroy session and logout
 module.exports.destroySession = function(req,res){
     req.logout();
     req.flash('success','You have logged out!');
     return res.redirect('/');
 }
+

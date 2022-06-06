@@ -13,13 +13,13 @@
     width: 50%;
     margin: auto;
     padding-left: 10%; }
-    #sign-in-container #sign-in-form .google {
+    #sign-in-container #sign-in-form #authentication .google {
       background-color: red; }
-    #sign-in-container #sign-in-form .facebook {
+    #sign-in-container #sign-in-form #authentication .facebook {
       background-color: #183153; }
-      #sign-in-container #sign-in-form .facebook i {
+      #sign-in-container #sign-in-form #authentication .facebook i {
         padding: 0px 3px; }
-    #sign-in-container #sign-in-form a {
+    #sign-in-container #sign-in-form #authentication a {
       padding: 10px;
       color: white;
       margin: 10px;

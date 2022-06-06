@@ -20,8 +20,18 @@ router.get('/sign-in',usersController.signIn);
 
 router.get('/sign-out',usersController.destroySession);
 
+router.get('/reset-password',usersController.forgotPassword);
+
+router.post('/send-password-link',usersController.sendLinkPassword);
+
+router.get('/new-password',usersController.newPassword);
+
+router.post('/update-password',usersController.updateNewPassword)
+
+
 // if method is post then come to router 
 router.post('/create',usersController.create);
+
 
 
 // use passport as a middleware to authenticate
