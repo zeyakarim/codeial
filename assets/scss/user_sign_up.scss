@@ -1,6 +1,6 @@
 #sign-up-container{
     background: linear-gradient(to right, #EFC98F,#D99BD9);
-    height: 87%;
+    // height: 87%;
     // margin-top: -6%;
     // padding-top: 6%;
     padding: 20px;
@@ -26,11 +26,20 @@
         #sign-up-form{
             width: 50%; 
             margin: auto;
+            padding: 30px 0px;
             padding-left: 15%;
-            div{
-                margin: 18px 0px;
+            h2{
+                margin-top: 4px;
+            }
+            #authenticate{
+                display: flex;
+                width: 80%;
+                margin: auto;
+                p{
+                    margin: 5px;
+                }
                 .google{
-                    background-color: red;
+                    background-color: #e00a0a;
                 }
                 .facebook{
                     background-color: #183153;
@@ -43,31 +52,49 @@
                     color: white;
                     margin-right: 30px;
                     border-radius: 50%;
-                    box-shadow: 0px 0px 4px 1px grey;
-                }
-                input{
-                    width: 70%;
-                    border: 0;
-                    background-color: #e4e9ed;
-                    font-size: 15px;
-                    padding: 8px;
-                    border-radius: 5px;
-                }
-                input:focus{
-                    outline: none;
-                }
-                h4{
-                    margin: 8px 0px;
                 }
             }
+            #sign-up{
+                div{
+                    margin: 25px 0px;
+                    .border-bottom{
+                        width: 29px; 
+                        border: 1px solid #D94DF4; 
+                        // border-radius: 5px; 
+                        margin: -5px 0px 12px;
+                    }
+                    i{
+                        border-bottom: 1px solid gray;
+                        color: #D94DF4;
+                    }
+                    input{
+                        width: 300px;
+                        border: 0;
+                        // background-color: #e4e9ed;
+                        font-size: 15px;
+                        padding: 8px;
+                        // border-radius: 5px;
+                    }
+                    input:focus{
+                        outline: none;
+                    }
+                    p{
+                        margin: 8px 0px;
+                        color: gray;
+                    }
+                }
+            }
+               
             #btn{
-                width: 100px;
+                width: 275px;
                 color: white;
-                background-color: #e91e63;
+                background: linear-gradient(to left, #E440F6, #71C4E1);
+                margin-left: 12px;
                 border: 0;
                 font-size: 16px;
                 padding: 7px;
-                border-radius: 5px;
+                border-radius: 20px;
+                margin-top: 15px;
                 cursor: pointer;
             }
         }

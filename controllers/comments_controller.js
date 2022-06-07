@@ -30,10 +30,10 @@ module.exports.create = async function(req,res){
             // lets pass the comment in the emails queue which are already created in kue
             let job = queue.create('emails',comment).save(function(err){
                 if(err){
-                    console.log('error in creating a queue');
+                    console.log('error in creating a queue',err);
                     return;
                 }
-                console.log('job enqueued',job.id);
+                // console.log('job enqueued',job.id);
             });
 
             if(req.xhr){

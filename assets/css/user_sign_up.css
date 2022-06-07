@@ -1,6 +1,5 @@
 #sign-up-container {
   background: linear-gradient(to right, #EFC98F, #D99BD9);
-  height: 87%;
   padding: 20px;
   padding-bottom: 20px; }
   #sign-up-container #sign-up-page {
@@ -21,38 +20,54 @@
     #sign-up-container #sign-up-page #sign-up-form {
       width: 50%;
       margin: auto;
+      padding: 30px 0px;
       padding-left: 15%; }
-      #sign-up-container #sign-up-page #sign-up-form div {
-        margin: 18px 0px; }
-        #sign-up-container #sign-up-page #sign-up-form div .google {
-          background-color: red; }
-        #sign-up-container #sign-up-page #sign-up-form div .facebook {
+      #sign-up-container #sign-up-page #sign-up-form h2 {
+        margin-top: 4px; }
+      #sign-up-container #sign-up-page #sign-up-form #authenticate {
+        display: flex;
+        width: 80%;
+        margin: auto; }
+        #sign-up-container #sign-up-page #sign-up-form #authenticate p {
+          margin: 5px; }
+        #sign-up-container #sign-up-page #sign-up-form #authenticate .google {
+          background-color: #e00a0a; }
+        #sign-up-container #sign-up-page #sign-up-form #authenticate .facebook {
           background-color: #183153; }
-          #sign-up-container #sign-up-page #sign-up-form div .facebook i {
+          #sign-up-container #sign-up-page #sign-up-form #authenticate .facebook i {
             padding: 0px 3px; }
-        #sign-up-container #sign-up-page #sign-up-form div a {
+        #sign-up-container #sign-up-page #sign-up-form #authenticate a {
           padding: 10px;
           color: white;
           margin-right: 30px;
-          border-radius: 50%;
-          box-shadow: 0px 0px 4px 1px grey; }
-        #sign-up-container #sign-up-page #sign-up-form div input {
-          width: 70%;
+          border-radius: 50%; }
+      #sign-up-container #sign-up-page #sign-up-form #sign-up div {
+        margin: 25px 0px; }
+        #sign-up-container #sign-up-page #sign-up-form #sign-up div .border-bottom {
+          width: 29px;
+          border: 1px solid #D94DF4;
+          margin: -5px 0px 12px; }
+        #sign-up-container #sign-up-page #sign-up-form #sign-up div i {
+          border-bottom: 1px solid gray;
+          color: #D94DF4; }
+        #sign-up-container #sign-up-page #sign-up-form #sign-up div input {
+          width: 300px;
           border: 0;
-          background-color: #e4e9ed;
           font-size: 15px;
-          padding: 8px;
-          border-radius: 5px; }
-        #sign-up-container #sign-up-page #sign-up-form div input:focus {
+          padding: 8px; }
+        #sign-up-container #sign-up-page #sign-up-form #sign-up div input:focus {
           outline: none; }
-        #sign-up-container #sign-up-page #sign-up-form div h4 {
-          margin: 8px 0px; }
+        #sign-up-container #sign-up-page #sign-up-form #sign-up div p {
+          margin: 8px 0px;
+          color: gray; }
       #sign-up-container #sign-up-page #sign-up-form #btn {
-        width: 100px;
+        width: 275px;
         color: white;
-        background-color: #e91e63;
+        background: linear-gradient(to left, #E440F6, #71C4E1);
+        margin-left: 12px;
         border: 0;
         font-size: 16px;
         padding: 7px;
-        border-radius: 5px;
+        border-radius: 20px;
+        margin-top: 15px;
         cursor: pointer; }

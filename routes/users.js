@@ -20,12 +20,16 @@ router.get('/sign-in',usersController.signIn);
 
 router.get('/sign-out',usersController.destroySession);
 
+// user click forgot_password then come this route
 router.get('/reset-password',usersController.forgotPassword);
 
+// user fill the email for reset link then come here
 router.post('/send-password-link',usersController.sendLinkPassword);
 
+// user click reset_link in email then come here
 router.get('/new-password',usersController.newPassword);
 
+// user update the password then come here
 router.post('/update-password',usersController.updateNewPassword)
 
 

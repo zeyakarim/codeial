@@ -1,10 +1,6 @@
 #sign-in-page{
-    height: 100%;
-    // margin-top: -6%;
-    // padding-top: 6%;
     padding: 20px;
-    background: linear-gradient(to right,#D99BD9, #EFC98F);
-    
+    background: linear-gradient(to right,#D99BD9, #EFC98F);    
 }
 #sign-in-container{
     width: 70%;
@@ -16,9 +12,71 @@
         width: 50%;
         margin: auto;
         padding-left: 10%;
+        #sign-in{
+            margin-top: 40px;
+            .input-box{
+                margin: 30px 0px 10px;
+                p{
+                    color: gray;
+                    margin: 10px 0px;
+                }
+                .border-bottom{
+                    width: 29px; 
+                    border: 1px solid #D94DF4; 
+                    // border-radius: 5px; 
+                    margin: -5px 0px 12px;
+                }
+                i{
+                    border-bottom: 1px solid gray;
+                    color: #D94DF4;
+                }
+                input{
+                    width: 275px;
+                    border: 0;
+                    // background-color: #e4e9ed;
+                    font-size: 15px;
+                    padding: 8px;
+                }
+                input:focus{
+                    outline: none;
+                }
+            }
+            a{
+                text-decoration: none;
+                color: gray;
+                margin-left: 160px;
+                margin-top: 5px;
+            }
+        }
+        #btn{
+            width: 270px;
+            color: white;
+            font-weight: bold;
+            // background-color: #e91e63;
+            background: linear-gradient(to left,#E440F6,#71C4E1);
+            margin-top: 25px;
+            border: 0;
+            font-size: 16px;
+            padding: 7px;
+            border-radius: 20px;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+
         #authentication{
+            width: 60%;
+            p{
+                text-align: center;
+                color: gray;
+            }
+            div{
+                display: flex;
+                margin: auto;
+                width: 40%;
+            }
             .google{
-                background-color: red;
+                background-color: #e00a0a;
             }
             .facebook{
                 background-color: #183153;
@@ -31,39 +89,13 @@
                 color: white;
                 margin: 10px;
                 border-radius: 50%;
-                box-shadow: 0px 0px 4px 1px grey;
+                // box-shadow: 0px 0px 4px 1px grey;
             }
         }
-        div{
-            margin: 25px 0px;
-            h4{
-                margin: 8px;
-            }
-            input{
-                width: 70%;
-                border: 0;
-                background-color: #e4e9ed;
-                font-size: 15px;
-                padding: 8px;
-                border-radius: 5px;
-            }
-            input:focus{
-                outline: none;
-            }
-        }
-        #btn{
-            width: 100px;
-            color: white;
-            font-weight: bold;
-            background-color: #e91e63;
-            margin-top: 10px;
-            border: 0;
-            font-size: 16px;
-            padding: 7px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
+        
+            
+        
+        
     }
     #sign-in-container-box{
         width: 40%;

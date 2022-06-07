@@ -14,7 +14,7 @@
         </div>
         <div id="sign-up-form">
             <h2>Sign Up To Codeial</h2>
-            <div style="display: flex;">
+            <div id="authenticate">
                 <p>
                     <a class="google" href="/users/auth/google">
                         <i class="fa-brands fa-google"></i>
@@ -27,29 +27,35 @@
                     </a>
                 </p>
             </div>
-            <form action="/users/create" method="POST">
+
+            <form action="/users/create" method="POST" id="sign-up">
                 <div>
-                    <h4>Name</h4>
-                    <input type="name" name="name" required>
+                    <p>Username</p>
+                    <p class="border-bottom"></p>
+                    <i class="fa-solid fa-user"><input type="name" name="name" placeholder="Type your name" required></i>
                 </div>
 
                 <div>
-                    <h4>Email Address</h4>
-                    <input type="email" name="email" required>
+                    <p>Email Address</p>
+                    <p class="border-bottom"></p>
+                    <i class="fa-solid fa-envelope"><input type="email" name="email" placeholder="Type your email" required></i>
                 </div>
 
                 <div>
-                    <h4>Password</h4>
-                    <input type="password" name="password" required>
+                    <p>Password</p>
+                    <p class="border-bottom"></p>
+                    <i class="fa-solid fa-lock"><input type="password" name="password" placeholder="Create your password" required></i>
                 </div>
                 
                 <div>
-                    <h4>Confirm Password</h4>
-                    <input type="password" name="confirm_password" required>
+                    <p>Confirm Password</p>
+                    <p class="border-bottom"></p>
+                    <i class="fa-solid fa-lock"><input type="password" name="confirm_password" placeholder="Type your password" required></i>
                 </div>
                 
                 <input type="submit" value="Sign Up" id="btn">
             </form>
+
         </div>
     </div>
 </div>

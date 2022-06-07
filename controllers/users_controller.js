@@ -133,6 +133,7 @@ module.exports.forgotPassword = function(req,res){
     });
 }
 
+// send link in email
 module.exports.sendLinkPassword = async function(req,res){
     let user = await User.findOne({email:req.body.email});
 
@@ -154,6 +155,7 @@ module.exports.sendLinkPassword = async function(req,res){
     return res.redirect('back');
 }
 
+// user click then reset link in email then come here
 module.exports.newPassword = async function(req,res){
     let accessToken = await ForgotPasswordModel.findOne({accessToken: req.query.accessToken});
 
@@ -169,7 +171,7 @@ module.exports.newPassword = async function(req,res){
     return res.redirect('/users/reset-password');
 }
 
-
+// user update newPassword
 module.exports.updateNewPassword = async function(req,res){
 
     // check password and confirm_password both are same
