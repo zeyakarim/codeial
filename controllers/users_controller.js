@@ -177,15 +177,22 @@ module.exports.updateNewPassword = async function(req,res){
     // check password and confirm_password both are same
     if (req.body.password == req.body.confirm_password){
 
-        // find the accessToken id 
-        let accessToken = await ForgotPasswordModel.findByIdAndUpdate(req.query.id,{isValid: false});
-        
-        // password update in User model schema
-        await User.findByIdAndUpdate(accessToken.user, req.body);
+        let user = await User.findById(req.query.user);
 
-        req.flash('success','Password updated successfully');
+        // check user exist in db
+        if(user){
+            // find the accessToken id 
+            await ForgotPasswordModel.findByIdAndUpdate(req.query.id,{isValid: false});
         
-        return res.redirect('/');
+            // password update in User model schema
+            await User.findByIdAndUpdate(user, req.body);
+
+            req.flash('success','Password updated successfully');
+        
+            return res.redirect('/');
+        }
+        req.flash('success','please register first our website');
+        return res.redirect('/users/sign-up');
     }
 
     req.flash('success','please write password & confirm_password same');

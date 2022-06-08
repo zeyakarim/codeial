@@ -58,7 +58,7 @@
         #sign-up-container #sign-up-page #sign-up-form #sign-up div input:focus {
           outline: none; }
         #sign-up-container #sign-up-page #sign-up-form #sign-up div p {
-          margin: 8px 0px;
+          margin: 5px 0px;
           color: gray; }
       #sign-up-container #sign-up-page #sign-up-form #btn {
         width: 275px;
