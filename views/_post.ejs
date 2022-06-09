@@ -1,7 +1,9 @@
 <li id="post-<%= post._id%>" style="margin: 20px 0px;">
-    <div style="display: flex;">
+    <div class="dlt-btn-cntnr" style="display: flex;">
         <img src="<%= post.user.avatar%>" alt="<%= post.user.name%>" width="40">
         <p><%= post.user.name%></p>
+
+        <!-- check user exist &&  currently user.id == post.user.id both are same -->
         <% if(user && user.id == post.user.id){ %>
             <small>
                 <a class="delete-post-button" href="/posts/destroy/<%=post.id%>">X</a>
@@ -11,12 +13,40 @@
     <p>
         <%= post.content%>
     </p>
+    
+    <div>
+        <% if(user){ %>
+            <a class="like-button" href="/likes/toggle/?id=<%=post._id%>&type=Post" style="margin:8px">
+                <div class="border-lk-cmt">
+                    <p>
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </p>
+                    <p>
+                        <i class="fa-solid fa-comment"></i>
+                    </p>
+                </div>
 
-    <!-- <%= post.content%>
-    <br>
-    <small>
-        <%= post.user.name%>
-    </small> -->
+                <p>
+                    <%= post.likes.length%> Likes
+                </p>
+            </a>
+    
+        <%}else{%>
+            <div class="border-lk-cmt">
+                <p>
+                    <i class="fa-solid fa-thumbs-up"></i>
+                </p>
+                <p>
+                    <i class="fa-solid fa-comment"></i>
+                </p>
+            </div>
+            <p>
+                <%= post.likes.length%> Likes  
+            </p>
+    
+        <%}%>
+    </div>
+    
     
 
     <div class="post-comments">

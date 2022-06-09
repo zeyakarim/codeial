@@ -52,6 +52,11 @@
                         </small>
                     </div>
                     <p>${ post.content }</p>
+                    <a href="/likes/toggle/?id=${post._id}&type=Post" style="margin:8px" class="like-btn">
+                        <p>
+                            0 Likes
+                        </p>
+                    </a>    
                     
 
                     <div class="post-comments">

@@ -2,6 +2,7 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
+const Like = require('../models/like');
 
 // import kue for delayed jobs 
 const queue = require('../config/kue');
@@ -74,6 +75,8 @@ module.exports.destroy = async function(req,res){
 
             // REMOVE THE COMMENT ID INSIDE THE POST.COMMENTS ARRAY
             let post = await Post.findByIdAndUpdate(postId, {$pull : {comments: req.params.id}});
+
+            await Like.deleteMany({likeable: comment._id,onModel: 'Comment'})
 
             if(req.xhr){
 

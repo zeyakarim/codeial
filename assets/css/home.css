@@ -42,12 +42,19 @@
       font-size: 16px;
       width: 60px;
       cursor: pointer; }
-    #main-container #feed-posts #posts-list-controller ul li div img {
+    #main-container #feed-posts #posts-list-controller ul li .dlt-btn-cntnr img {
       border-radius: 50%; }
-    #main-container #feed-posts #posts-list-controller ul li div small {
+    #main-container #feed-posts #posts-list-controller ul li .dlt-btn-cntnr small {
       margin-top: 14px; }
-    #main-container #feed-posts #posts-list-controller ul li div p {
+    #main-container #feed-posts #posts-list-controller ul li .dlt-btn-cntnr p {
       margin: 14px 8px 6px; }
+    #main-container #feed-posts #posts-list-controller ul li .border-lk-cmt {
+      display: flex;
+      padding: 3px 0px;
+      border-bottom: 1px solid gray;
+      border-top: 1px solid gray;
+      color: gray;
+      justify-content: space-around; }
     #main-container #feed-posts #posts-list-controller ul li p {
       margin: 8px; }
     #main-container #feed-posts .post-comments {

@@ -53,9 +53,19 @@
                             </p>
                         </div>
 
-                        <small>
-                            <a class="delete-comment-button" href="/comments/destroy/${comment._id}">X</a>
-                        </small>
+                        <div>
+                            <small>
+                                <a class="delete-comment-button" href="/comments/destroy/${comment._id}">
+                                    <p>X</p>
+                                </a>
+                            </small>
+
+                            <a href="/likes/toggle/?id=${comment._id}&type=comment">
+                                <p>
+                                    0 Likes
+                                </p>
+                            </a>
+                        </div>
                     </div>
                 </li>`);
     }
@@ -98,4 +108,5 @@
     for (let i of deleteCommentbutton){
         deleteComment(i);
     }
+
 }

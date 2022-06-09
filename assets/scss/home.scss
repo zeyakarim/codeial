@@ -57,7 +57,7 @@
         #posts-list-controller{
             ul{
                 li{
-                    div{
+                    .dlt-btn-cntnr{
                         img{
                             border-radius: 50%;
                         }
@@ -67,6 +67,14 @@
                         p{
                             margin: 14px 8px 6px;
                         }
+                    }
+                    .border-lk-cmt{
+                        display: flex; 
+                        padding: 3px 0px; 
+                        border-bottom: 1px solid gray; 
+                        border-top: 1px solid gray;
+                        color: gray;
+                        justify-content: space-around;
                     }
                     p{
                         margin: 8px;

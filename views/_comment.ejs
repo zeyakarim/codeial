@@ -5,7 +5,7 @@
             <img src="<%= comment.user.avatar %>" alt="<%= comment.user.name %>" width="30">
         </p>
         <div class="comment-details">
-            <h4 style="margin: 0;">
+            <h4 style="margin: 5px 0px;">
                 <%= comment.user.name %>
             </h4>
             <p style="margin: 0;">
@@ -13,10 +13,29 @@
             </p>
         </div>
         
-        <% if(user && user.id == comment.user.id){ %>
-            <small>
-                <a class="delete-comment-button" href="/comments/destroy/<%=comment._id%>">X</a>
-            </small>
-        <% } %>
+        <div >
+            <% if(user && user.id == comment.user.id){ %>
+                <small>
+                    <a class="delete-comment-button" href="/comments/destroy/<%=comment._id%>">
+                        <p>X</p>
+                    </a>
+                </small>
+            <% } %>
+            
+            <div>            
+                <% if(user){ %>
+                    <a class="like-button" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
+                        <p>
+                            <%= comment.likes.length%> Likes
+                        </p>
+                    </a>
+            
+                <% }else{%>
+                    <p>
+                        <%= comment.likes.length%> Likes
+                    </p>
+                <% } %>
+            </div>
+        </div>
     </div>
 </li>
