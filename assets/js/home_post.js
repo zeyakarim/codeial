@@ -25,6 +25,8 @@
 
                     // THIS .delete-post-button INSIDE newPost
                     deletePost($(' .delete-post-button',newPost));
+
+                    new ToggleLike($('.toggle-like-button',newPost));
                     
                     // THEN SHOW THE FLATTY MESSAGE
                     new Noty({
@@ -43,28 +45,51 @@
 
     // method to create a post in DOM
     let newPostDom = function(post){
-        return $(`<li id="post-${post._id}">
-                    <div style = "display: flex;">
+        return $(`<li class="post-container" id="post-${post._id}" style="margin: 10px 0px;">
+                    <div class="dlt-btn-cntnr" style ="display: flex;">
                         <img src="${ post.user.avatar}" alt="${post.user.name}" width="40">
                         <p>${ post.user.name }</p>
-                        <small>
+                        <small style="margin-top: 14px;">
                             <a class="delete-post-button" href="/posts/destroy/${post._id}">X</a>
                         </small>
                     </div>
                     <p>${ post.content }</p>
-                    <a href="/likes/toggle/?id=${post._id}&type=Post" style="margin:8px" class="like-btn">
+                    <div class="like-comment-box" id="${post._id}">
                         <p>
-                            0 Likes
+                            ${post.likes.length} Likes
                         </p>
-                    </a>    
+                    </div>
+
+                    <div class="border-lk-cmt">
+                      
+                        <a class="toggle-like-button" data-likes="${post.likes.length}" href="/likes/toggle/?id=${post._id}&type=Post">
+                            <p>
+                                <i class="fa-solid fa-thumbs-up"></i>
+                            </p>
+                            <p style="margin-left: 0;">
+                                Likes
+                            </p>
+                        </a>
+
+                        <p>
+                            <i class="fa-solid fa-comment"></i>
+                        </p> 
+                    </div>     
                     
 
                     <div class="post-comments">
-                        <form action="/comments/create" method="POST" id="post-${ post._id }-comments-form">
-                            <input type="text" name="content" placeholder="Type here to add comment..." required>
-                            <input type="hidden" name="post" value="${post._id}">
-                            <input type="submit" value="Comment">
-                        </form> 
+                        <div style="display: flex;">
+                            <div class="img-container">
+                                <img src="${post.user.avatar}" alt="${post.user.name}" width="30">
+                            </div>
+                            <div class="comments-form">
+                                <form action="/comments/create" method="POST" id="post-${ post._id }-comments-form">
+                                    <input type="text" name="content" placeholder="Type here to add comment..." required>
+                                    <input type="hidden" name="post" value="${post._id}">
+                                    <input type="submit" value="Comment">
+                                </form> 
+                            </div>
+                        </div>
                 
                         <div class="post-comments-list">
                             <ul id="post-comments-${post._id}">
@@ -92,6 +117,7 @@
                 // THIS IS HOW YOU GET THE VALUE OF THE href INSIDE <a> TAG
                 url: $(deleteLink).prop('href'),
                 success: function(data){
+                    console.log(data);
                     $(`#post-${data.data.post_id}`).remove();
                     
                     new Noty({

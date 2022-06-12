@@ -20,6 +20,9 @@
                     $(`#post-comments-${data.data.comment.post}`).prepend(newComment);
                     deleteComment($(' .delete-comment-button',newComment));
 
+                    new ToggleLike($('.toggle-like-button',newComment));
+
+
                     new Noty({
                         theme: 'relax',
                         text: 'Comment Published',
@@ -60,13 +63,11 @@
                                 </a>
                             </small>
 
-                            <a href="/likes/toggle/?id=${comment._id}&type=comment">
-                                <p>
-                                    0 Likes
-                                </p>
-                            </a>
                         </div>
                     </div>
+                    <a class="toggle-like-button" data-likes="${comment.likes.length}" href="/likes/toggle/?id=${comment._id}&type=Comment">
+                        <span style="margin-left:56;">Like</span>
+                    </a>
                 </li>`);
     }
 
@@ -96,7 +97,14 @@
             });
         });
     }
-       
+    
+    let showComment = function(commentForm){
+        // console.log(commentForm);
+        $(commentForm).click(function(e){
+            console.log($('.post-comments'));
+            $('.post-comments').css('display','block');
+        })
+    }
 
     let newPostForm1 = $('.post_comments');
     for (let i of newPostForm1){
@@ -109,4 +117,9 @@
         deleteComment(i);
     }
 
+    let commentBtn = $('.comment-btn i');
+    for (let i of commentBtn){
+        // console.log(i);
+        showComment(i);
+    }
 }

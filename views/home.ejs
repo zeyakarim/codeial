@@ -18,10 +18,17 @@
         <% if(user){%>
     
             <h4>Posts</h4>
-            <form action="/posts/create" id="new-post-form" method="post">
-                <textarea name="content" cols="40" rows="2" placeholder="Text Area..." required></textarea>
-                <input type="submit" value="Post">
-            </form>
+            <div class="form">
+                <div style="padding-top: 15px;">
+                    <img src="<%= user.avatar %>" alt="<%= user.name%>" width="35">
+                </div>
+                <div>
+                    <form action="/posts/create" id="new-post-form" method="post">
+                        <textarea name="content" cols="40" rows="1" placeholder="Text Area..." required></textarea>
+                        <input type="submit" value="Post">
+                    </form>
+                </div>
+            </div>
         <% } %>
     
         <div id="posts-list-controller">
@@ -47,7 +54,7 @@
                     </a> 
                 </div>
             <% } %>
-        </div>
+        </div> 
     </section>
     
 </div>
@@ -55,6 +62,12 @@
 <script src="/js/home_like.js"></script>
 <script src="/js/home_post_comment.js"></script>
 <script src="/js/home_post.js"></script>
+<script>
+    $('.toggle-like-button').each(function(){
+        let self = this;
+        let toggleLike = new ToggleLike(self);
+    });
+</script>
 
 
 

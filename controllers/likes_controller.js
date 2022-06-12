@@ -35,6 +35,7 @@ module.exports.toggleLike = async function(req,res){
             // also delete the inside like model
             existingLike.remove();
             deleted = true;
+            // return res.redirect('back')
         }else{
             // if like not exist,then create a like in db
             let newLike = await Like.create({
@@ -45,12 +46,15 @@ module.exports.toggleLike = async function(req,res){
 
             likeable.likes.push(newLike._id);
             likeable.save();
+            
         }
 
         // we return the data in json form
         return res.json(200, {
             message: 'Request Successful!',
-            deleted: deleted
+            deleted: deleted,
+            likeable: likeable._id,
+            type: req.query.type 
         });
 
     }catch(err){
