@@ -1,21 +1,57 @@
 <link rel="stylesheet" href="/css/user_profile.css">
 
-<%  if (user.id == profile_user.id){ %>
-    <!-- if user matches then show the form -->
-    <div style="margin-bottom: 10px;">
-        <img src="<%= user.avatar%>" alt="<%= user.name%>" width="100">
-    </div>
+<div id="user-profile" style="padding: 20px;">
+    <!-- if user see own profile -->
+    <%  if (user.id == profile_user.id){ %>
+        <!-- if user matches then show the form -->
+        <div style="margin-bottom: 10px;">
+            <img src="<%= user.avatar%>" alt="<%= user.name%>" width="100">
+        </div>
+    
+        <form action="/users/update/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name%>" required>
+            <input type="email" name="email" placeholder="Your Email" value="<%= profile_user.email%>" required>
+            <input type="file" name="avatar" placeholder="Profile Picture">
+            <input type="submit" value="Update">
+        </form>
+       
+    <%}else{%>
+        <!-- else show only the profile info -->
+        <div>
+            <% if(profile_user.avatar == undefined){%>
+                <p><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="100"></p>
+            <% }else{ %>
+                <p><img src="<%= profile_user.avatar%>" alt="<%= profile_user.name%>" width="100"></p>
+            <% } %>
 
-    <form action="/users/update/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name%>" required>
-        <input type="email" name="email" placeholder="Your Email" value="<%= profile_user.email%>" required>
-        <input type="file" name="avatar" placeholder="Profile Picture">
-        <input type="submit" value="Update">
-    </form>
+            <p><%= profile_user.name%></p>
+            <p><%= profile_user.email%></p>
+        </div>
+        
+        <% if(user){ %>
+            <% let isFriend = false %>
+            <!-- run for loop on user friendships array -->
 
-<%}else{%>
-    <!-- else show only the profile info -->
-    <p><img src="<%= profile_user.avatar%>" alt="<%= profile_user.name%>" width="100"></p>
-    <p><%= profile_user.name%></p>
-    <p><%= profile_user.email%></p>
-<% } %>
+            <% for( friend of userfriend.friendships) {%>
+                <!-- check request sender.id == profile.id or request receiver.id == profile.id are same -->
+                <% if (friend.from_user == profile_user.id || friend.to_user == profile_user.id){ %>
+                    <% isFriend = true %>
+                <% } %>   
+            <% } %>
+
+            <!-- if exist in user friend array then show these button -->
+            <% if(isFriend){ %>
+                <a class="add-friend-btn" href="/users/friend/<%= profile_user.id %>">
+                    <button type="submit">Remove Friend</button>
+                </a>
+            <% }else{ %>
+                <a class="add-friend-btn" href="/users/friend/<%= profile_user.id %>">
+                    <button type="submit">Add Friend</button>
+                </a>
+            <% } %>
+        <% } %>
+    <% } %>
+</div>
+
+<script src="/js/user_friend.js"></script>
+

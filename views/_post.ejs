@@ -1,6 +1,11 @@
 <li class="post-container" id="post-<%= post._id%>" style="margin: 10px 0px;">
     <div class="dlt-btn-cntnr" style="display: flex; padding: 10px 0px;">
-        <img src="<%= post.user.avatar%>" alt="<%= post.user.name%>" width="40">
+        <% if(post.user.avatar == undefined){%>
+            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="40">
+        <% }else{ %>
+            <img src="<%= post.user.avatar%>" alt="<%= post.user.name%>" width="40">
+        <% } %>
+
         <p><%= post.user.name%></p>
 
         <!-- check user exist &&  currently user.id == post.user.id both are same -->
@@ -37,7 +42,6 @@
                     <i class="fa-solid fa-comment"></i>
                 </p> 
             </div>
-            <!-- </div> -->
         <%}else{%>
             <p>
                 <i class="fa-solid fa-thumbs-up color"></i> <%= post.likes.length%>   
@@ -60,7 +64,12 @@
         <% if(user){ %> 
             <div style="display: flex;">
                 <div class="img-container">
-                    <img src="<%= user.avatar %>" alt="<%= user.name %>" width="30">
+                    <% if(user.avatar == undefined){%>
+                        <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="30">
+                    <% }else{ %>
+                        <img src="<%= user.avatar %>" alt="<%= user.name %>" width="30">
+                    <% } %>
+                    
                 </div>
                 <div class="comments-form">
                     <form action="/comments/create" method="POST" id="post-<%= post._id %>-comments-form" class="post_comments">

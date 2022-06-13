@@ -15,13 +15,33 @@ module.exports.home = async function(req,res){
                 path: 'user'
             }
         }).populate('likes');
+
+        let friends;
+        if(req.user){
+            friends = await User.findById(req.user._id)
+            .populate({
+                path: 'friendships',
+                populate: {
+                    path: 'to_user'
+                },
+            })
+            .populate({
+                path: 'friendships',
+                populate: {
+                    path: 'from_user'
+                },
+            })
+        }
+        
         
         let users = await User.find({});
 
         return res.render('home',{
             title : "Home",
             posts: post,
-            all_users: users
+            all_users: users,
+            userfriends :friends
+            
         });
 
     }catch(err){

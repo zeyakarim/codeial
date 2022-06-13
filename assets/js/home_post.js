@@ -48,6 +48,7 @@
         return $(`<li class="post-container" id="post-${post._id}" style="margin: 10px 0px;">
                     <div class="dlt-btn-cntnr" style ="display: flex;">
                         <img src="${ post.user.avatar}" alt="${post.user.name}" width="40">
+                        
                         <p>${ post.user.name }</p>
                         <small style="margin-top: 14px;">
                             <a class="delete-post-button" href="/posts/destroy/${post._id}">X</a>

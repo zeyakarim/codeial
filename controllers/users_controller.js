@@ -8,14 +8,22 @@ const forgotPasswordMailer = require('../mailers/forgot_password_mailer');
 const ForgotPasswordModel = require('../models/forgot_password');
 const crypto = require('crypto');
 
+// import the friendship module
+const Friendship = require('../models/friendship');
+
+
 // render profile page
-module.exports.profile = function(req,res){
-    User.findById(req.params.id, function(err,user){
-        return res.render('user_profile',{
-            title: 'User Profile',
-            profile_user: user
-        });
-    });   
+module.exports.profile = async function(req,res){
+    let user = await User.findById(req.params.id);
+
+    let userfriend = await User.findById(req.user._id).populate({path: 'friendships'})
+
+    
+    return res.render('user_profile',{
+        title: 'User Profile',
+        profile_user: user,
+        userfriend: userfriend
+    });
 }
 
 module.exports.update = async function(req,res){
@@ -197,6 +205,48 @@ module.exports.updateNewPassword = async function(req,res){
 
     req.flash('success','please write password & confirm_password same');
     return res.redirect('back');
+}
+
+// if user send the request to add friend
+module.exports.friends = async function(req,res){
+    try{
+        // let friend;
+        let request = false;
+        let userfriend = await User.findById(req.user._id).populate('friendships');
+
+        let exitsFriend = await Friendship.findOne({from_user:req.user._id,to_user: req.params.id});
+
+        if(exitsFriend){
+            
+            // if userfriend list already this friend then remove the inside the friendships array
+            userfriend.friendships.pull(exitsFriend._id);
+            userfriend.save();
+
+            // also remove from friendSchema
+            exitsFriend.remove();
+            request = true;
+        }else{
+            let addFriend = await Friendship.create({
+                from_user: req.user._id,
+                to_user: req.params.id
+            });
+
+            userfriend.friendships.push(addFriend._id);
+            userfriend.save();
+        }
+
+        return res.json(200, {
+            message: 'Successfully sent request',
+            request: request
+        });
+
+
+    }catch(err){
+        console.log('error',err);
+        return res.json(500,{
+            message: 'Internal server error'
+        });
+    }
 }
 
 // destroy session and logout

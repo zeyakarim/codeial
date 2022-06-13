@@ -27,6 +27,8 @@
       padding: 10px 20px;
       border-radius: 10px;
       display: flex; }
+      #main-container #feed-posts .form img {
+        border-radius: 50%; }
     #main-container #feed-posts #new-post-form {
       padding-top: 15px;
       margin-left: 5px; }
@@ -64,6 +66,8 @@
           margin-top: 14px; }
         #main-container #feed-posts #posts-list-controller ul .post-container .dlt-btn-cntnr p {
           margin: 14px 8px 6px; }
+        #main-container #feed-posts #posts-list-controller ul .post-container .post-comments img {
+          border-radius: 50%; }
         #main-container #feed-posts #posts-list-controller ul .post-container .like-comment-box .post-like {
           color: gray; }
         #main-container #feed-posts #posts-list-controller ul .post-container .border-lk-cmt {
@@ -136,29 +140,53 @@
     width: 22%;
     /* width */
     /* Track - whether this scrollbar is scroll*/
+    /* Handle - scrollbar inside thumb scrolling*/
+    /* Track - whether this scrollbar is scroll*/
     /* Handle - scrollbar inside thumb scrolling*/ }
-    #main-container #user-friends #user-friends-container::-webkit-scrollbar {
+    #main-container #user-friends #friends-container::-webkit-scrollbar {
       width: 8px; }
-    #main-container #user-friends #user-friends-container::-webkit-scrollbar-track {
+    #main-container #user-friends #friends-container::-webkit-scrollbar-track {
       box-shadow: inset 0 0 5px gray;
       border-radius: 8px; }
-    #main-container #user-friends #user-friends-container::-webkit-scrollbar-thumb {
+    #main-container #user-friends #friends-container::-webkit-scrollbar-thumb {
       background-color: gray;
       border-radius: 10px; }
-    #main-container #user-friends #user-friends-container {
+    #main-container #user-friends #friends-container {
+      height: 30vh;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column; }
+      #main-container #user-friends #friends-container .user-friend {
+        display: flex;
+        margin: 10px; }
+        #main-container #user-friends #friends-container .user-friend img {
+          border-radius: 50%; }
+        #main-container #user-friends #friends-container .user-friend p {
+          margin-left: 10px; }
+    #main-container #user-friends #friends-container:hover {
+      overflow-y: scroll; }
+    #main-container #user-friends #user-container::-webkit-scrollbar {
+      width: 8px; }
+    #main-container #user-friends #user-container::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px gray;
+      border-radius: 8px; }
+    #main-container #user-friends #user-container::-webkit-scrollbar-thumb {
+      background-color: gray;
+      border-radius: 10px; }
+    #main-container #user-friends #user-container {
       display: flex;
       flex-direction: column;
       overflow-y: hidden;
-      height: 100vh; }
-    #main-container #user-friends #user-friends-container:hover {
+      height: 50vh; }
+      #main-container #user-friends #user-container div {
+        display: flex;
+        margin: 10px 5px; }
+        #main-container #user-friends #user-container div img {
+          border-radius: 50%; }
+        #main-container #user-friends #user-container div p {
+          margin-left: 5px; }
+    #main-container #user-friends #user-container:hover {
       overflow-y: scroll; }
-    #main-container #user-friends div {
-      display: flex;
-      margin: 10px 5px; }
-      #main-container #user-friends div img {
-        border-radius: 50%; }
-      #main-container #user-friends div p {
-        margin-left: 5px; }
     #main-container #user-friends a {
       text-decoration: none;
       color: black; }
