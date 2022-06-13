@@ -65,9 +65,14 @@
 
                         </div>
                     </div>
-                    <a class="toggle-like-button" data-likes="${comment.likes.length}" href="/likes/toggle/?id=${comment._id}&type=Comment">
-                        <span style="margin-left:56;">Like</span>
-                    </a>
+                    <div style="margin-left: 56px; font-size: 14px;">  
+                        <a class="toggle-like-button cmt-clr" data-likes="${comment.likes.length}" href="/likes/toggle/?id=${comment._id}&type=Comment">
+                            <span>Like</span>
+                        </a>
+                        <span class="comment-like" id="${comment._id}">
+                            <i class="fa-solid fa-thumbs-up color"></i> ${comment.likes.length}
+                        </span>
+                    </div>
                 </li>`);
     }
 

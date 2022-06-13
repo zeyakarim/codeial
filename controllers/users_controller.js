@@ -4,6 +4,10 @@ const path = require('path');
 // import the forgot_password file
 const forgotPasswordMailer = require('../mailers/forgot_password_mailer');
 
+// import kue for delayed jobs 
+const queue = require('../config/kue');
+const newuserEmailWorker = require('../workers/user_worker');
+
 // import the forgot_password model
 const ForgotPasswordModel = require('../models/forgot_password');
 const crypto = require('crypto');
@@ -16,8 +20,10 @@ const Friendship = require('../models/friendship');
 module.exports.profile = async function(req,res){
     let user = await User.findById(req.params.id);
 
-    let userfriend = await User.findById(req.user._id).populate({path: 'friendships'})
-
+    let userfriend;
+    if(req.user){
+        userfriend = await User.findById(req.user._id).populate({path: 'friendships'})
+    }
     
     return res.render('user_profile',{
         title: 'User Profile',
@@ -96,7 +102,7 @@ module.exports.signIn = function(req,res){
 }
 
 // get the sign up data
-module.exports.create = function(req,res){
+module.exports.create = async function(req,res){
 
     // check password and confirm_password are equal
     if (req.body.password != req.body.confirm_password){
@@ -104,28 +110,29 @@ module.exports.create = function(req,res){
     }
     
     // check user is found in db
-    User.findOne({email : req.body.email}, function(err,user){
-        if(err){
-            console.log('error in finding user in signing up');
-            return;
-        }
-        // handle user is not found in db
-        if(!user){
-            User.create(req.body,function(err,user){
-                if(err){
-                    console.log('error in creating user while signing up');
-                    return;
-                }
-                // console.log(user);
-                req.flash('success','Sign-up Successfully');
-                return res.redirect('/users/sign-in');
-            });
-        }else{
-            // handle user is found in db
-            req.flash('error','Please fill the Correct information');
-            return res.redirect('back');
-        }
-    });
+    let user = await User.findOne({email : req.body.email});
+
+    // handle user is not found in db
+    if(!user){
+        let newuser = await User.create(req.body);
+        // console.log(newuser);
+
+        let job = queue.create('newuser',newuser).save(function(err){
+            if(err){
+                console.log('error in creating a queue',err);
+                return;
+            }
+            console.log('job enqueued',job.id)
+        });
+            
+        // console.log(user);
+        req.flash('success','Sign-up Successfully');
+        return res.redirect('/users/sign-in');
+    }else{
+        // handle user is found in db
+        req.flash('error','Please fill the Correct information');
+        return res.redirect('back');
+    }
 }
 
 // sign in and create a session for the user

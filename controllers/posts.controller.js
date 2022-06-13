@@ -2,6 +2,10 @@ const Post = require('../models/post');
 const Comment = require('../models/comment');
 const Like = require('../models/like');
 
+// import kue for delayed jobs 
+const queue = require('../config/kue');
+const postEmailWorker = require('../workers/comment_post_email_worker');
+
 // CREATE Post INSIDE DB
 module.exports.create = async function(req,res){
     try{
@@ -9,6 +13,16 @@ module.exports.create = async function(req,res){
             content: req.body.content,
             user: req.user._id
         });
+
+        post = await post.populate('user','name avatar email');
+
+        let job = queue.create('posts',post).save(function(err){
+            if(err){
+                console.log('error in creating a queue',err);
+                return;
+            }
+            console.log('job enqueued',job.id);
+        })
 
         if(req.xhr){
             // after populate it will give only user name because i will specified only user name

@@ -115,7 +115,7 @@ class ToggleLike{
             })
             .done(function(data) {
                 // let likesCount = parseInt($(self).attr('data-likes'));
-                console.log(data);
+                // console.log(data);
                 if (data.deleted == true){
                     // store all like-comment-box in likeComment
                     if(data.type == 'Post'){
@@ -145,6 +145,7 @@ class ToggleLike{
                     }else{
                         // data type is comment
                         let commentLike = $('.comment-like');
+                        // console.log($(self));
                         // console.log(commentLike);
                         for (let i of commentLike){
                             // console.log($(i).attr('id'));

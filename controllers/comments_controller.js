@@ -6,7 +6,7 @@ const Like = require('../models/like');
 
 // import kue for delayed jobs 
 const queue = require('../config/kue');
-const commentEmailWorker = require('../workers/comment_email_worker');
+const commentEmailWorker = require('../workers/comment_post_email_worker');
 
 
 // CREATE COMMENT INSIDE DB
