@@ -11,9 +11,44 @@
                 <% }else{ %>
                     <img src="<%= user.avatar %>" alt="<%= user.name%>" width="50">
                 <% } %>
-                <p><%= user.name %></p>
+                <p style="font-weight: bold;"><%= user.name %></p>
             </div>
         <% } %>
+        <div id="friends">
+            <% if(user){ %>
+                <h4>Friends</h4>
+                <% if(user.friendships.length == '0'){ %>
+                    <p>No friends found!</p>
+                <% }else{%>
+                    <div id="friends-container">
+                        <!-- run for loop on user friendship array -->
+                        <% for (friend of userfriends.friendships){ %>
+                            <!-- check request sender and login user both are same -->
+                            <% if(friend.from_user.id == user._id){%>
+                                <div class="user-friend">
+                                    <!-- then show request receiver profile -->
+                                    <img src="<%= friend.to_user.avatar %>" alt="<%= friend.to_user.name %>" width="50">
+                                    <a href="/users/profile/<%= friend.to_user._id%>">
+                                        <p><%= friend.to_user.name %></p>
+                                    </a>
+                                </div>
+                            <%} %>
+                            
+                            <!-- check request reciever and login user both are same -->
+                            <% if(friend.to_user.id == user.id) {%>
+                                <div class="user-friend">
+                                    <!-- then show the request sender profile -->
+                                    <img src="<%= friend.from_user.avatar %>" alt="<%= friend.from_user.name %>" width="50">
+                                    <a href="/users/profile/<%= friend.from_user._id%>">
+                                        <p><%= friend.from_user.name %></p>
+                                    </a>
+                                </div>
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>  
+            <% } %>
+        </div>
     </section>
     
 
@@ -54,58 +89,26 @@
 
     
     <section id="user-friends">
-        <% if(user){ %>
-            <h4>Friends</h4>
-            <% if(user.friendships.length == '0'){ %>
-                <p>No friends found!</p>
-            <% }else{%>
-                <div id="friends-container">
-                    <!-- run for loop on user friendship array -->
-                    <% for (friend of userfriends.friendships){ %>
-                        <!-- check request sender and login user both are same -->
-                        <% if(friend.from_user.id == user._id){%>
-                            <div class="user-friend">
-                                <!-- then show request receiver profile -->
-                                <img src="<%= friend.to_user.avatar %>" alt="<%= friend.to_user.name %>" width="50">
-                                <a href="/users/profile/<%= friend.to_user._id%>">
-                                    <p><%= friend.to_user.name %></p>
-                                </a>
-                            </div>
-                        <%} %>
-                        
-                        <!-- check request reciever and login user both are same -->
-                        <% if(friend.to_user.id == user.id) {%>
-                            <div class="user-friend">
-                                <!-- then show the request sender profile -->
-                                <img src="<%= friend.from_user.avatar %>" alt="<%= friend.from_user.name %>" width="50">
-                                <a href="/users/profile/<%= friend.from_user._id%>">
-                                    <p><%= friend.from_user.name %></p>
-                                </a>
-                            </div>
-                        <% } %>
-                    <% } %>
-                </div>
-            <% } %>  
-        <% } %>
-       
 
         <h4>Users</h4>
         <div id="user-container">
-            <% for (user of all_users){%>
+            <% for (users of all_users){%>
                 <div>
-                    <% if(user.avatar == undefined){%>
+                    <% if(users.avatar == undefined){%>
                         <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="50">
                     <% }else{ %>
-                        <img src="<%= user.avatar %>" alt="<%=user.name%>" width="50">
+                        <img src="<%= users.avatar %>" alt="<%=users.name%>" width="50">
                     <% } %>
 
-                    <a href="/users/profile/<%= user.id%>">
-                        <p><%= user.name%></p>
+                    <a href="/users/profile/<%= users.id%>">
+                        <p><%= users.name%></p>
                     </a> 
                 </div>
             <% } %>
         </div> 
     </section>
+
+    <%- include('_chat_box'); %>
     
 </div>
 
@@ -119,8 +122,16 @@
     });
 </script>
 
+<!-- chat_engine file & socket.io cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+<script src="/js/chat_engine.js"></script>
 
-
+<!-- if user exist then call this class -->
+<% if(user){ %>
+    <script>
+        new ChatEngine('user-chat-box', '<%= user.email%>', '<%= user.name %>','<%= user._id%>')
+    </script>
+<% } %>
 
 
 

@@ -5,10 +5,36 @@
   justify-content: space-between; }
   #main-container #user-profile {
     width: 20%;
-    padding: 15px 20px 20px; }
+    padding: 15px 20px 20px;
+    /* Track - whether this scrollbar is scroll*/
+    /* Handle - scrollbar inside thumb scrolling*/ }
     #main-container #user-profile div p {
-      padding-left: 10px;
-      font-weight: bold; }
+      padding-left: 10px; }
+    #main-container #user-profile #friends-container::-webkit-scrollbar {
+      width: 8px; }
+    #main-container #user-profile #friends-container::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px gray;
+      border-radius: 8px; }
+    #main-container #user-profile #friends-container::-webkit-scrollbar-thumb {
+      background-color: gray;
+      border-radius: 10px; }
+    #main-container #user-profile #friends-container {
+      height: 65vh;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column; }
+      #main-container #user-profile #friends-container .user-friend {
+        display: flex;
+        margin: 10px 0px; }
+        #main-container #user-profile #friends-container .user-friend a {
+          text-decoration: none;
+          color: black; }
+        #main-container #user-profile #friends-container .user-friend img {
+          border-radius: 50%; }
+        #main-container #user-profile #friends-container .user-friend p {
+          margin-left: 10px; }
+    #main-container #user-profile #friends-container:hover {
+      overflow-y: auto; }
   #main-container #feed-posts::-webkit-scrollbar {
     display: none; }
   #main-container #feed-posts {
@@ -140,31 +166,7 @@
     width: 22%;
     /* width */
     /* Track - whether this scrollbar is scroll*/
-    /* Handle - scrollbar inside thumb scrolling*/
-    /* Track - whether this scrollbar is scroll*/
     /* Handle - scrollbar inside thumb scrolling*/ }
-    #main-container #user-friends #friends-container::-webkit-scrollbar {
-      width: 8px; }
-    #main-container #user-friends #friends-container::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 5px gray;
-      border-radius: 8px; }
-    #main-container #user-friends #friends-container::-webkit-scrollbar-thumb {
-      background-color: gray;
-      border-radius: 10px; }
-    #main-container #user-friends #friends-container {
-      height: 30vh;
-      overflow-y: hidden;
-      display: flex;
-      flex-direction: column; }
-      #main-container #user-friends #friends-container .user-friend {
-        display: flex;
-        margin: 10px; }
-        #main-container #user-friends #friends-container .user-friend img {
-          border-radius: 50%; }
-        #main-container #user-friends #friends-container .user-friend p {
-          margin-left: 10px; }
-    #main-container #user-friends #friends-container:hover {
-      overflow-y: scroll; }
     #main-container #user-friends #user-container::-webkit-scrollbar {
       width: 8px; }
     #main-container #user-friends #user-container::-webkit-scrollbar-track {
@@ -177,7 +179,7 @@
       display: flex;
       flex-direction: column;
       overflow-y: hidden;
-      height: 50vh; }
+      height: 77vh; }
       #main-container #user-friends #user-container div {
         display: flex;
         margin: 10px 5px; }
@@ -186,7 +188,7 @@
         #main-container #user-friends #user-container div p {
           margin-left: 5px; }
     #main-container #user-friends #user-container:hover {
-      overflow-y: scroll; }
+      overflow-y: auto; }
     #main-container #user-friends a {
       text-decoration: none;
       color: black; }

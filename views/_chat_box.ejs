@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="/css/chat_box.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Kaushan+Script&family=Lobster+Two&family=Pacifico&family=Shrikhand&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+
+<% if(user){ %>
+    <!-- <div>
+        <img src="https://png.pngtree.com/png-vector/20190830/ourlarge/pngtree-letter-a-c-rounded-logo-designs-inspiration-isolated-on-white-ba-png-image_1715909.jpg" alt="" width="30">
+    </div> -->
+   
+    
+    <div>
+        <div id="hide-chatbox">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div id="user-chat-box">
+            <p id="chat-header">How can i help you</p>
+            <ul id="chat-message-list">
+                <li class="other-message">
+
+                    <!-- run for loop on allusermessage -->
+                    <% for(msg of allUserMessage){ %>
+
+                        <!-- check msguserid and user.id both are not equal,then show all user msg -->
+                        <% if(msg.user.id != user.id){ %>
+                            <span><%= msg.message %></span>
+                            <p style="margin: 4px; color: gray; font-size: 13px;">
+                                <small><%= msg.user.name %></small>
+                            </p>
+                        <% } %>
+                    <% } %>
+                    
+                </li>
+
+                <!-- only showing the login user msg -->
+                <li class="self-message">
+                    <% for(u of usermsg.messages){%>
+                        <span><%= u.message %></span>
+                        <p style="margin: 4px; color: gray; font-size: 13px;">
+                            <small><%= user.name %></small>
+                        </p>
+                    <% } %>
+                </li>
+            </ul>
+            <div id="chat-message-input-container">
+    
+                <input name="message" id="chat-message-input" placeholder="Type message here">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+        <div id="show-chatbox">
+        <h1>C</h1>
+    </div>
+    </div>
+    
+<% } %>

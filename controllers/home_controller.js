@@ -1,6 +1,7 @@
 // require the post and user model schema
 const Post = require('../models/post');
 const User = require('../models/user');
+const Message = require('../models/user_message');
 
 module.exports.home = async function(req,res){
 
@@ -17,6 +18,8 @@ module.exports.home = async function(req,res){
         }).populate('likes');
 
         let friends;
+        let usermsg;
+        let usermessage;
         if(req.user){
             friends = await User.findById(req.user._id)
             .populate({
@@ -31,6 +34,10 @@ module.exports.home = async function(req,res){
                     path: 'from_user'
                 },
             })
+
+            usermsg = await User.findById(req.user._id).populate('messages');
+            allUserMessage = await Message.find({}).populate('user');
+            // msg = await User.find({}).populate('messages');
         }
         
         
@@ -40,8 +47,9 @@ module.exports.home = async function(req,res){
             title : "Home",
             posts: post,
             all_users: users,
-            userfriends :friends
-            
+            userfriends :friends,
+            allUserMsg : allUserMessage,
+            usermsg : usermsg
         });
 
     }catch(err){
