@@ -79,7 +79,8 @@
       padding: 8px;
       border-radius: 20px;
       width: 25%;
-      margin-left: 5px; }
+      margin-left: 5px;
+      cursor: pointer; }
 
 #show-chatbox {
   background: linear-gradient(to right, #3855D3, #A6297F);

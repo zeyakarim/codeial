@@ -19,7 +19,7 @@ module.exports.home = async function(req,res){
 
         let friends;
         let usermsg;
-        let usermessage;
+        let allUserMessage;
         if(req.user){
             friends = await User.findById(req.user._id)
             .populate({

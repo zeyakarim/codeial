@@ -1,5 +1,5 @@
 class ChatEngine{
-    // This will take two arguments chatboxId and userEmail
+    // This will take two arguments chatboxId,userEmail,userName,userId
     constructor(chatBoxId,userEmail,userName,userId){
         this.chatBox = (`#${chatBoxId}`);
         this.userEmail = userEmail;
@@ -54,7 +54,7 @@ class ChatEngine{
             
             let msg = $('#chat-message-input').val();
 
-            if(msg != " "){
+            if(msg != ''){
                 self.socket.emit('send_message', {
                     message: msg,
                     user_email : self.userEmail,
@@ -100,7 +100,10 @@ class ChatEngine{
         $('#hide-chatbox').click(function(){
             $('#user-chat-box').css('display','none');
             $('#hide-chatbox').css('display', 'none');
-            $('#show-chatbox').css('display','block');
+            $('#show-chatbox').css({
+                display: 'block',
+                zIndex: '1'
+            });
         });
 
         $('#show-chatbox').click(function(){

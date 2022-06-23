@@ -3,109 +3,115 @@
 
 <div id="main-container">
     <section id="user-profile">
-        <% if(user){ %>
-            <div style="display: flex;">
-                
-                <% if(user.avatar == undefined){%>
-                    <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="50">
-                <% }else{ %>
-                    <img src="<%= user.avatar %>" alt="<%= user.name%>" width="50">
-                <% } %>
-                <p style="font-weight: bold;"><%= user.name %></p>
-            </div>
-        <% } %>
-        <div id="friends">
+        <div id="profile-friend-container">
             <% if(user){ %>
-                <h4>Friends</h4>
-                <% if(user.friendships.length == '0'){ %>
-                    <p>No friends found!</p>
-                <% }else{%>
-                    <div id="friends-container">
-                        <!-- run for loop on user friendship array -->
-                        <% for (friend of userfriends.friendships){ %>
-                            <!-- check request sender and login user both are same -->
-                            <% if(friend.from_user.id == user._id){%>
-                                <div class="user-friend">
-                                    <!-- then show request receiver profile -->
-                                    <img src="<%= friend.to_user.avatar %>" alt="<%= friend.to_user.name %>" width="50">
-                                    <a href="/users/profile/<%= friend.to_user._id%>">
-                                        <p><%= friend.to_user.name %></p>
-                                    </a>
-                                </div>
-                            <%} %>
-                            
-                            <!-- check request reciever and login user both are same -->
-                            <% if(friend.to_user.id == user.id) {%>
-                                <div class="user-friend">
-                                    <!-- then show the request sender profile -->
-                                    <img src="<%= friend.from_user.avatar %>" alt="<%= friend.from_user.name %>" width="50">
-                                    <a href="/users/profile/<%= friend.from_user._id%>">
-                                        <p><%= friend.from_user.name %></p>
-                                    </a>
-                                </div>
-                            <% } %>
-                        <% } %>
-                    </div>
-                <% } %>  
+                <div style="display: flex;">
+                    
+                    <% if(user.avatar == undefined){%>
+                        <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="50">
+                    <% }else{ %>
+                        <img src="<%= user.avatar %>" alt="<%= user.name%>" width="50">
+                    <% } %>
+                    <p style="font-weight: bold;"><%= user.name %></p>
+                </div>
             <% } %>
+            <div id="friends">
+                <% if(user){ %>
+                    <h4>Friends</h4>
+                    <% if(user.friendships.length == '0'){ %>
+                        <p>No friends found!</p>
+                    <% }else{%>
+                        <div id="friends-container">
+                            <!-- run for loop on user friendship array -->
+                            <% for (friend of userfriends.friendships){ %>
+                                <!-- check request sender and login user both are same -->
+                                <% if(friend.from_user.id == user._id){%>
+                                    <div class="user-friend">
+                                        <!-- then show request receiver profile -->
+                                        <img src="<%= friend.to_user.avatar %>" alt="<%= friend.to_user.name %>" width="50">
+                                        <a href="/users/profile/<%= friend.to_user._id%>">
+                                            <p><%= friend.to_user.name %></p>
+                                        </a>
+                                    </div>
+                                <%} %>
+                                
+                                <!-- check request reciever and login user both are same -->
+                                <% if(friend.to_user.id == user.id) {%>
+                                    <div class="user-friend">
+                                        <!-- then show the request sender profile -->
+                                        <img src="<%= friend.from_user.avatar %>" alt="<%= friend.from_user.name %>" width="50">
+                                        <a href="/users/profile/<%= friend.from_user._id%>">
+                                            <p><%= friend.from_user.name %></p>
+                                        </a>
+                                    </div>
+                                <% } %>
+                            <% } %>
+                        </div>
+                    <% } %>  
+                <% } %>
+            </div>
         </div>
     </section>
     
 
     <section id="feed-posts">
 
-    
-        <% if(user){%>
-    
-            <h4>Posts</h4>
-            <div class="form">
-                <div style="padding-top: 15px;">
-                    <% if(user.avatar == undefined){%>
-                        <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="35">
-                    <% }else{ %>
-                        <img src="<%= user.avatar %>" alt="<%= user.name%>" width="35">
-                    <% } %>
+       
+        <div>
+            <% if(user){%>
+                <h4>Posts</h4>
+                <div class="form">
+                    <div style="padding-top: 15px;">
+                        <% if(user.avatar == undefined){%>
+                            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="35">
+                        <% }else{ %>
+                            <img src="<%= user.avatar %>" alt="<%= user.name%>" width="35">
+                        <% } %>
+                    </div>
+                    <div id="form-post">
+                        <form action="/posts/create" id="new-post-form" method="post">
+                            <!-- <textarea name="content" cols="40" rows="1" placeholder="Text Area..." required></textarea> -->
+                            <input name="content" placeholder="Text Area..." required>
+                            <input type="submit" value="Post">
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <form action="/posts/create" id="new-post-form" method="post">
-                        <textarea name="content" cols="40" rows="1" placeholder="Text Area..." required></textarea>
-                        <input type="submit" value="Post">
-                    </form>
-                </div>
-            </div>
-        <% } %>
-    
-        <div id="posts-list-controller">
-            <ul style="list-style: none; padding-left: 0;">
-                <% for (post of posts){%>
-                   
-                    <%- include('_post'); %>
-                   
-                <%}%>
-            </ul>
-        </div>
+            <% } %>
         
+            <div id="posts-list-controller">
+                <ul style="list-style: none; padding-left: 0;">
+                    <% for (post of posts){%>
+                       
+                        <%- include('_post'); %>
+                       
+                    <%}%>
+                </ul>
+            </div>
+        </div>
     </section>
 
     
     <section id="user-friends">
 
-        <h4>Users</h4>
-        <div id="user-container">
-            <% for (users of all_users){%>
-                <div>
-                    <% if(users.avatar == undefined){%>
-                        <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="50">
-                    <% }else{ %>
-                        <img src="<%= users.avatar %>" alt="<%=users.name%>" width="50">
-                    <% } %>
+        <div id="user-fixed">
+            <h4>Users</h4>
+            <div id="user-container">
+                <% for (users of all_users){%>
+                    <div>
+                        <% if(users.avatar == undefined){%>
+                            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="50">
+                        <% }else{ %>
+                            <img src="<%= users.avatar %>" alt="<%=users.name%>" width="50">
+                        <% } %>
 
-                    <a href="/users/profile/<%= users.id%>">
-                        <p><%= users.name%></p>
-                    </a> 
-                </div>
-            <% } %>
-        </div> 
+                        <a href="/users/profile/<%= users.id%>">
+                            <p><%= users.name%></p>
+                        </a> 
+                    </div>
+                <% } %>
+            </div> 
+        </div>
+        
     </section>
 
     <%- include('_chat_box'); %>

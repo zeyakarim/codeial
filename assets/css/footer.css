@@ -2,7 +2,8 @@ footer {
   background-color: #0A2541;
   color: #ffffff;
   display: flex;
-  width: 100%; }
+  width: 100%;
+  position: sticky; }
   footer #logo-name {
     display: flex; }
     footer #logo-name h1 {

@@ -7,6 +7,10 @@
         width: 20%;
         padding: 15px 20px 20px;
         // border-right: 1px solid gray;
+        #profile-friend-container{
+            position: fixed;
+            width: 20%;
+        }
         div{
             p{
                 padding-left: 10px;
@@ -53,6 +57,18 @@
             overflow-y: auto;
         }
     }
+    @media screen and (max-width: 1200px) {
+        #user-profile{
+            padding: 15px 10px 20px;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        #user-profile{
+            display: none;
+        }
+    }
+
     #feed-posts::-webkit-scrollbar{
         display: none;
     }
@@ -61,15 +77,15 @@
         padding: 10px 40px;
         border-radius: 20px;
         // overflow-y: auto;
-        height: 100vh;
+        height: 100%;
         display: flex;
         flex-direction: column;
         /* hide scrollbar but allow scrolling */
         -ms-overflow-style: none;
         scrollbar-width: none; 
-        overflow-y: scroll; 
+        overflow-y: auto; 
         .form{
-            background-color: white;
+            background-color: #FFFFFF;
             padding: 10px 20px;
             border-radius: 10px;
             display: flex;
@@ -77,10 +93,14 @@
                 border-radius: 50%;
             }
         }
+        #form-post{
+            width: 93%;
+        }
         #new-post-form{
             padding-top: 15px;
             margin-left: 5px;
-            textarea{
+            // width: 70%;
+            input[name= content]{
                 background-color: lightgray;
                 resize: none;
                 border: 0;
@@ -88,8 +108,10 @@
                 padding: 10px 20px;
                 font-size: 17px;
                 margin: 0px auto;
+                overflow-y: auto;
+                width: 85%;
             }
-            textarea:focus{
+            input:focus{
                 outline: none;
             }
             input[type= submit]{
@@ -101,8 +123,8 @@
                 font-size: 16px;
                 width: 60px;
                 cursor: pointer;
-                position: relative;
-                top: -13px;
+                // position: relative;
+                // top: -13px;
             }
         }
         #posts-list-controller{
@@ -184,7 +206,7 @@
                         background-color: #d5dbe4;
                         padding: 8px 12px;
                         border-radius: 20px;
-                        width: 80%;
+                        width: 77%;
                     }
                     input:focus{
                         outline: none;
@@ -233,15 +255,60 @@
             }
 
         }
+    } 
+    @media screen and(max-width: 1200px) {
+        #feed-posts{
+            width: 50%;
+            padding: 10px 0;
+            // margin: auto;
+
+        }
+    }
+    @media screen and(max-width: 1075px) {
+        #feed-posts{
+            width: 50%;
+            padding: 10px 0;
+            #new-post-form input[name=content] {
+                width: 81%;
+            }
+            .post-comments .comments-form form input[type=text] {
+                width: 72%;
+            }
+        }
+    }
+    @media screen and(max-width: 900px) {
+        #feed-posts{
+            width: 70%;
+            padding: 10px 0;
+            // margin: auto;
+        }
+    }
+    @media screen and(max-width: 700px) {
+        #feed-posts{
+            width: 80%;
+            padding: 10px 0;
+            margin: auto;
+        }
+    }
+
+    @media screen and(max-width: 600px) {
+        #feed-posts{
+            width: 95%;
+            padding: 10px 0;
+            margin: auto;
+        }
     }
       
     #user-friends{
-        width: 22%;
+        width: 20%;
         // height: 100vh;
         // padding: 10px;
 
         /* width */
-        
+        #user-fixed{
+            position: fixed;
+            width: 22%;
+        }
         #user-container::-webkit-scrollbar{
             width: 8px;
         }
@@ -285,4 +352,18 @@
             color: black;
         }
     }
+    @media screen and(max-width: 900px) {
+        #user-friends{
+           width: 25%;
+           #user-fixed{ 
+                width: 26%;
+            }
+        }
+    }
+    @media screen and(max-width: 700px) {
+        #user-friends{
+            display: none;
+        }
+    }
+    
 }
