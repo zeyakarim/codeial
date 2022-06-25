@@ -72,18 +72,19 @@
                         <form action="/posts/create" id="new-post-form" method="post" enctype="multipart/form-data">
                             <!-- <textarea name="content" cols="40" rows="1" placeholder="Text Area..." required></textarea> -->
                             <div>
-                                <input name="content" placeholder="Text Area..." required>  
+                                <input name="content" class="inputfield" placeholder="Text Area...">  
                             </div>
                             
                             <div style="display: flex;">
                                 <div id="upload-photo">
                                     <!-- <i class="fa-solid fa-camera" for="file"></i> -->
                                     <label for="files"><i class="fa-solid fa-camera"></i> Photos</label>
-                                    <input type="file" id="files" name="post-avatar" value="photos" hidden>
+                                    <input type="file" id="files" name="postAvatar" value="photos" hidden>
                                     
                                 </div>
-                                <input type="submit" value="Post">
+                                <input type="submit" value="Post" id="sub-btn">
                             </div>
+                            <div id="result"></div>
                             
                         </form>
                     </div>
@@ -127,6 +128,8 @@
     </section>
 
     <%- include('_chat_box'); %>
+
+    
     
 </div>
 

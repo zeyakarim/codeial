@@ -42,10 +42,11 @@ module.exports.update = async function(req,res){
                 if(err){
                     console.log('*****Multer Error: ',err);
                 }
+                console.log(req.body);
                 user.name = req.body.name;
                 user.email = req.body.email;
 
-                // console.log(req.file);
+                console.log(req.file);
                 if(req.file){
                     // first it will go userSchema.uploadedAvatar function and save 
                     // the file destination and filename in the localstorage/multer storage

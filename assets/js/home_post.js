@@ -1,25 +1,24 @@
 {
     // method to submit the form data for new post using AJAX
     let createPost = function(){
+        $('#new-post-form').submit(function(e) {
+            e.preventDefault(); 
+            // because i will create new formData that's why i write [0] it gives first form
+            let form = $('#new-post-form')[0];
 
-        // FETCH THE POST FORM USING ID
-        let newPostForm = $('#new-post-form');
-
-        newPostForm.submit(function(e){
-
-            // SUBMIT BUTTON DEFAULT BEHAVIOUR IS DISABLE
-            e.preventDefault();
-
-            // SO SUBMIT THE FORM USING AJAX
+            // pass this previous form inside this new FormData object this will contain all data
+            let formData = new FormData(form);
+        
             $.ajax({
-                type: 'POST',
                 url: '/posts/create',
-
-                // WE NEED TO SEND THE DATA,THAT WE ARE CREATING POST AND CONVERT INTO JSON FORMAT
-                data: newPostForm.serialize(),
-
-                // if data is successfully send and after that take response from controller & then print the data
-                success: function(data){
+                method: 'POST',
+                data: formData,
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
                     let newPost = newPostDom(data.data.post);
                     $('#posts-list-controller>ul').prepend(newPost);
 
@@ -27,7 +26,7 @@
                     deletePost($(' .delete-post-button',newPost));
 
                     new ToggleLike($('.toggle-like-button',newPost));
-                    
+
                     // THEN SHOW THE FLATTY MESSAGE
                     new Noty({
                         theme: 'relax',
@@ -41,7 +40,9 @@
                 }
             });
         });
+
     }
+
 
     // method to create a post in DOM
     let newPostDom = function(post){
@@ -55,6 +56,9 @@
                         </small>
                     </div>
                     <p>${ post.content }</p>
+                    <p>
+                        <img src="${ post.postAvatar }" alt="${ post.name}" width="80%">
+                    </p>
                     <div class="like-comment-box" id="${post._id}">
                         <p>
                             ${post.likes.length} Likes
@@ -71,8 +75,8 @@
                                 Likes
                             </p>
                         </a>
-
-                        <p>
+                        
+                        <p class="comment-btn" id="${ post._id }" data-toggles="false">
                             <i class="fa-solid fa-comment"></i>
                         </p> 
                     </div>     

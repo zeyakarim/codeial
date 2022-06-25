@@ -9,38 +9,53 @@ const postEmailWorker = require('../workers/comment_post_email_worker');
 // CREATE Post INSIDE DB
 module.exports.create = async function(req,res){
     try{
-        let post = await Post.create({
-            content: req.body.content,
-            user: req.user._id
-        });
-
-        post = await post.populate('user','name avatar email');
-
-        let job = queue.create('posts',post).save(function(err){
+        let post;
+        
+        Post.uploadedAvatar(req,res, async function(err){
+            // console.log(req.body);
             if(err){
-                console.log('error in creating a queue',err);
-                return;
+                console.log('***Multer Error:',err);
             }
-            console.log('job enqueued',job.id);
-        })
-
-        if(req.xhr){
-            // after populate it will give only user name because i will specified only user name
-            // post = await post.populate('user','name');
-
-            post = await post.populate('user','name avatar');
-
-            return res.status(200).json({
-                data: {
-                    post : post
-                },
-                message: 'Post Created!'
+            post = await Post.create({
+                content: req.body.content,
+                user: req.user._id
             });
-        }
 
-        req.flash('success','Post Published!');
-        return res.redirect('back'); 
+            console.log(req.file);
+            if(req.file){
+                // first it will go userSchema.uploadedAvatar function and save 
+                // the file destination and filename in the localstorage/multer storage
+                post.postAvatar = Post.avatarPath + '/' + req.file.filename;
+            }
+            post.save();
 
+            post = await post.populate('user','name avatar email');
+
+            let job = queue.create('posts',post).save(function(err){
+                if(err){
+                    console.log('error in creating a queue',err);
+                    return;
+                }
+                console.log('job enqueued',job.id);
+            })
+
+            if(req.xhr){
+                // after populate it will give only user name because i will specified only user name
+                // post = await post.populate('user','name');
+
+                post = await post.populate('user','name avatar');
+
+                return res.status(200).json({
+                    data: {
+                        post : post
+                    },
+                    message: 'Post Created!'
+                });
+            }
+
+            req.flash('success','Post Published!');
+            return res.redirect('back'); 
+        });
     }catch(err){
         req.flash('error',err);
         return res.redirect('back'); 

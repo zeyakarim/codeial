@@ -41,7 +41,7 @@ class ToggleLike{
                                 countDecrease -= 1;
 
                                 // change the html value inside i.html
-                                $(i).html(`<p>
+                                $(i).html(`<p style="padding: 0px 18px;">
                                             <i class="fa-solid fa-thumbs-up color"></i> <span class="post-like">${countDecrease}</span>
                                         </p>`);
                             }
@@ -91,7 +91,7 @@ class ToggleLike{
                                 countIncrease += 1;
 
                                 // change the html value inside i.html
-                                $(i).html(`<p>
+                                $(i).html(`<p style="padding: 0px 18px;">
                                             <i class="fa-solid fa-thumbs-up color"></i> <span class="post-like"> ${countIncrease} </span>
                                         </p>`);
                             }

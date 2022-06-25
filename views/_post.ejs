@@ -1,28 +1,40 @@
-<li class="post-container" id="post-<%= post._id%>" style="margin: 10px 0px;">
-    <div class="dlt-btn-cntnr" style="display: flex; padding: 10px 0px;">
-        <% if(post.user.avatar == undefined){%>
-            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="40">
-        <% }else{ %>
-            <img src="<%= post.user.avatar%>" alt="<%= post.user.name%>" width="40">
-        <% } %>
-        
-        <p><%= post.user.name%></p>
-
-        <!-- check user exist &&  currently user.id == post.user.id both are same -->
-        <% if(user && user.id == post.user.id){ %>
-            <small>
-                <a class="delete-post-button" href="/posts/destroy/<%=post.id%>">X</a>
-            </small>
-        <% } %>
+<li class="post-container" id="post-<%= post._id%>" style="margin: 10px 0px; padding: 0;">
+    <div  style="padding: 5px 18px;">
+        <div class="dlt-btn-cntnr" style="display: flex; padding: 10px 0px;">
+            <div style="display: flex;">
+                <% if(post.user.avatar == undefined){%>
+                    <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="40">
+                <% }else{ %>
+                    <img src="<%= post.user.avatar%>" alt="<%= post.user.name%>" width="40">
+                <% } %>
+                
+                <p><%= post.user.name%></p>
+            </div>
+            
+    
+            <!-- check user exist &&  currently user.id == post.user.id both are same -->
+            <% if(user && user.id == post.user.id){ %>
+                <small>
+                    <a class="delete-post-button" href="/posts/destroy/<%=post.id%>">X</a>
+                </small>
+            <% } %>
+        </div>
+        <p>
+            <%= post.content%>
+        </p>
     </div>
-    <p>
-        <%= post.content%>
+    
+    <p style="width: 100%; margin: 0;">
+        <% if (post.postAvatar){%>
+            <img src="<%= post.postAvatar %>" alt="<%= post.name %>" width="100%">
+        <%} %>
+        
     </p>
     
     <div>
         <% if(user){ %>
             <div class="like-comment-box" id="<%= post._id%>">
-                <p>
+                <p style="padding: 0px 18px;">
                     <i class="fa-solid fa-thumbs-up color"></i> <span class="post-like"><%= post.likes.length%> </span>
                 </p>
             </div>
