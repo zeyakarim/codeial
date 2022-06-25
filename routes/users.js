@@ -33,7 +33,7 @@ router.get('/new-password',usersController.newPassword);
 router.post('/update-password',usersController.updateNewPassword)
 
 
-// if method is post then come to router 
+// if method is post then come to router sign-up router
 router.post('/create',usersController.create);
 
 router.post('/friend/:id',usersController.friends);

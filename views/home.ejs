@@ -69,10 +69,22 @@
                         <% } %>
                     </div>
                     <div id="form-post">
-                        <form action="/posts/create" id="new-post-form" method="post">
+                        <form action="/posts/create" id="new-post-form" method="post" enctype="multipart/form-data">
                             <!-- <textarea name="content" cols="40" rows="1" placeholder="Text Area..." required></textarea> -->
-                            <input name="content" placeholder="Text Area..." required>
-                            <input type="submit" value="Post">
+                            <div>
+                                <input name="content" placeholder="Text Area..." required>  
+                            </div>
+                            
+                            <div style="display: flex;">
+                                <div id="upload-photo">
+                                    <!-- <i class="fa-solid fa-camera" for="file"></i> -->
+                                    <label for="files"><i class="fa-solid fa-camera"></i> Photos</label>
+                                    <input type="file" id="files" name="post-avatar" value="photos" hidden>
+                                    
+                                </div>
+                                <input type="submit" value="Post">
+                            </div>
+                            
                         </form>
                     </div>
                 </div>

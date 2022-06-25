@@ -38,7 +38,7 @@
                 </a>
 
 
-                <p class="comment-btn">
+                <p class="comment-btn" id="<%= post._id %>" data-toggles="false">
                     <i class="fa-solid fa-comment"></i>
                 </p> 
             </div>
@@ -60,7 +60,7 @@
     
     
 
-    <div class="post-comments">
+    <div class="post-comments" id="<%= post._id %>">
         <% if(user){ %> 
             <div style="display: flex;">
                 <div class="img-container">

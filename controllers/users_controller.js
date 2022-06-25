@@ -114,6 +114,7 @@ module.exports.create = async function(req,res){
 
     // handle user is not found in db
     if(!user){
+        // then add user in db
         let newuser = await User.create(req.body);
         // console.log(newuser);
 

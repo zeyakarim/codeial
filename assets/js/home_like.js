@@ -1,98 +1,4 @@
 
-// {   
-//     let newLIke = function(likeCreate){
-//         // console.log(likeCreate);
-        
-//         $(likeCreate).click(function(e){
-//             // console.log($(likeCreate));
-//             // console.log($(likeCreate).prop('href'))
-//             e.preventDefault();
-
-//             $.ajax({
-//                 method: 'post',
-//                 url: $(likeCreate).prop('href'),
-//                 success: function(data){
-//                     console.log(data);
-//                     // if like are already done then come here
-//                     if(data.deleted == true){
-//                         // store all like-comment-box in likeComment
-//                         let likeComment = $('.like-comment-box');
-
-//                         // run for loop of likeComment
-//                         for (let i of likeComment){
-
-//                             // store the all id in likeDecrement
-//                             let likeDecrement =  $(i).attr('id');
-
-//                             // check likeDecrement.id == data.likeable //data.likeable comes likes_contorller
-//                             if (data.likeable == likeDecrement){
-//                                 // if both are match then store the in countDecrease
-//                                 let countDecrease = parseInt($(i).text());
-//                                 countDecrease -= 1;
-
-//                                 // change the html value inside i.html
-//                                 $(i).html(`<p>
-//                                                 <i class="fa-solid fa-thumbs-up"></i> ${countDecrease} 
-//                                             </p>`);
-//                             }
-//                         }
-//                         $(likeCreate).html(`<div class="like-button">
-//                                                 <p>
-//                                                     <i class="fa-solid fa-thumbs-up"></i> 
-//                                                 </p>
-//                                                 <p style="margin-left: 0;">
-//                                                     Like
-//                                                 </p>
-//                                             </div>`);                       
-//                     }else{
-//                         // store all like-comment-box in likeComment
-//                         let likeComment = $('.like-comment-box');
-
-//                         // run for loop of likeComment
-//                         for(let i of likeComment){
-
-//                             // store the all id in likeDecrement 
-//                             let likeIncrement =  $(i).attr('id');
-
-//                             // check likeDecrement.id == data.likeable //data.likeable comes likes_contorller
-//                             if (data.likeable == likeIncrement){
-//                                 // if both are match then store the in countIncrease
-//                                 let countIncrease = parseInt($(i).text());
-//                                 countIncrease += 1;
-//                                 // change the html value inside i.html
-//                                 $(i).html(`<p>
-//                                                 <i class="fa-solid fa-thumbs-up  color"></i> <span>${countIncrease} </span>
-//                                             </p>`)
-//                             }
-//                         }
-                        
-//                         $(likeCreate).html(`<div class="like-button color">
-//                                                 <p>
-//                                                     <i class="fa-solid fa-thumbs-up"></i>
-//                                                 </p>
-//                                                 <p style="margin-left: 0;">
-//                                                     Like
-//                                                 </p>
-//                                             </div>`);
-//                     }
-//                 },error: function(error){
-//                     console.log(error.responseText);
-//                 }
-//             });
-//         });
-
-//     }
-
-//     let likeButton = $('.like-button');
-
-//     for (let i of likeButton){
-//         // console.log(i);
-//         newLIke(i);
-//     }
-
-    
-// }
-
 // CHANGE :: create a class to toggle likes when a link is clicked, using AJAX
 class ToggleLike{
     constructor(toggleElement){
@@ -226,4 +132,55 @@ class ToggleLike{
     }
 }
 
+// all button come inside showComment
+let commentbtnloop = function(showComment){
 
+    // add click event to all showComment button if any btn click
+    $(showComment).click(function(comment){
+
+        // only store one btn id which was click 
+        let click = $(comment.currentTarget).attr('id');
+
+        // let store the data toggle value
+        let showhidebtn = $(comment.currentTarget).attr('data-toggles');
+        console.log(click);
+        // console.log(showhidebtn);
+
+        // let store all postComments div
+        let postComments = $('.post-comments');
+
+        // run for loop of all postComments div
+        for(let post of postComments){
+
+            // let store postComment div id
+            let show = $(post).attr('id');
+            
+            // check postComment id and click button post id both are same
+            if(show == click){
+                // also check data-toggle value is false
+                if(showhidebtn == 'false'){
+                    console.log(show);
+                    // then show the postComment click div display block
+                    $(post).css('display','block');
+                    // set the data-toggles value to be true
+                    $(comment.currentTarget).attr('data-toggles',true);
+                }else{
+
+                    // if data-toggle value is true then postComment click display none
+                    $(post).css('display','none');
+                    // set the data-toggles value to be false
+                    $(comment.currentTarget).attr('data-toggles',false)
+                }
+            }
+        }  
+    });
+}
+
+// store the comment btn 
+let commentbtn = $('.comment-btn');
+
+// then run the for loop
+for(let btn of commentbtn){
+    // pass this btn and call this commentbtnloop
+    commentbtnloop(btn);
+}

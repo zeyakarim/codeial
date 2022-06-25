@@ -103,13 +103,6 @@
         });
     }
     
-    let showComment = function(commentForm){
-        // console.log(commentForm);
-        $(commentForm).click(function(e){
-            console.log($('.post-comments'));
-            $('.post-comments').css('display','block');
-        })
-    }
 
     let newPostForm1 = $('.post_comments');
     for (let i of newPostForm1){
@@ -122,9 +115,4 @@
         deleteComment(i);
     }
 
-    let commentBtn = $('.comment-btn i');
-    for (let i of commentBtn){
-        // console.log(i);
-        showComment(i);
-    }
 }
