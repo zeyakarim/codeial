@@ -23,6 +23,34 @@ const userSchema = new mongoose.Schema({
     avatar: {
         type: String
     },
+    birthday: {
+        type: Date
+    },
+    gender: {
+        type: String
+    },
+    phone: {
+        type: Number,
+        required: true
+    },
+    address: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    district: {
+        type: String
+    },
+    zip: {
+        type: Number
+    },
+    state: {
+        type: String
+    },
+    country: {
+        type: String
+    },
     friendships: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -34,7 +62,7 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'MessageSchema'
         }
-    ],
+    ]
 },{
     timestamps : true
 });

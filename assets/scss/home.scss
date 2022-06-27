@@ -179,9 +179,10 @@
                         display: flex; 
                         padding: 3px 0px; 
                         // border-bottom: 1px solid gray; 
-                        border-top: 1px solid gray;
+                        border-top: 1px solid #9a9090;
                         color: gray;
                         justify-content: space-around;
+                        margin: 0px 20px;
                         .toggle-like-button{
                             display: flex;
                             text-decoration: none;
@@ -193,7 +194,7 @@
                         }
                     }
                     p{
-                        margin: 8px;
+                        margin: 10px 8px;
                     }
                     .color{
                         color: #FFFFFF;  
@@ -208,9 +209,11 @@
         .post-comments{
             // margin: 10px 0px;
             // width: 122%;
-            padding-left: 10px;
+            // padding-left: 10px;
             border-top: 1px solid gray;
             display: none;
+            border-top: 1px solid #9a9090;
+            margin: 0px 20px;
             .img-container{
                 margin-top: 10px;
             }

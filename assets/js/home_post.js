@@ -35,6 +35,8 @@
                         layout: 'topRight',
                         timeout: '1500'  
                     }).show();
+
+                    // $('#new-post-form').val() = '';
                 },error: function(error){
                     console.log(error.responseText);
                 }
@@ -46,19 +48,26 @@
 
     // method to create a post in DOM
     let newPostDom = function(post){
-        return $(`<li class="post-container" id="post-${post._id}" style="margin: 10px 0px;">
-                    <div class="dlt-btn-cntnr" style ="display: flex;">
-                        <img src="${ post.user.avatar}" alt="${post.user.name}" width="40">
-                        
-                        <p>${ post.user.name }</p>
-                        <small style="margin-top: 14px;">
-                            <a class="delete-post-button" href="/posts/destroy/${post._id}">X</a>
-                        </small>
+        return $(`<li class="post-container" id="post-${post._id}" style="margin: 10px 0px; padding: 0px;">
+                    <div style="padding:5px 18px;">
+                        <div class="dlt-btn-cntnr" style ="display: flex;">
+                            <img src="${ post.user.avatar}" alt="${post.user.name}" width="40">
+                            
+                            <h4>${ post.user.name }</h4>
+                            <small style="margin-top: 14px;">
+                                <a class="delete-post-button" href="/posts/destroy/${post._id}">X</a>
+                            </small>
+                        </div>
+                        <p>${ post.content }</p>
                     </div>
-                    <p>${ post.content }</p>
-                    <p>
-                        <img src="${ post.postAvatar }" alt="${ post.name}" width="80%">
-                    </p>
+                    
+                    ${post.postAvatar ?
+                        `<p style="width: 100%; margin: 0;">
+                            <img src="${ post.postAvatar }" alt="${ post.name}" width="100%">
+                        </p>`
+                    : ''}
+                   
+                    
                     <div class="like-comment-box" id="${post._id}">
                         <p>
                             ${post.likes.length} Likes

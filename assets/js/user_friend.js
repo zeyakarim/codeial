@@ -11,9 +11,9 @@
             url: addFriend.attr('href'),
             success: function(data){
                 if (data.request == true){
-                    addFriend.html('<button type="submit">Add Friend</button>')
+                    addFriend.html('<i class="fa-solid fa-user-plus"><button type="submit">Add Friend</button></i>')
                 }else{
-                    addFriend.html(`<button type="submit">Remove Friend</button>`)
+                    addFriend.html(`<i class="fa-solid fa-user-xmark"><button type="submit">Remove Friend</button></i>`)
                 }
             },error: function(err){
                 console.log(err);

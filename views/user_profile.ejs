@@ -1,57 +1,218 @@
 <link rel="stylesheet" href="/css/user_profile.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
 
 <div id="user-profile" style="padding: 20px;">
     <!-- if user see own profile -->
     <%  if (user.id == profile_user.id){ %>
         <!-- if user matches then show the form -->
-        <div style="margin-bottom: 10px;">
-            <img src="<%= user.avatar%>" alt="<%= user.name%>" width="100">
-        </div>
-    
-        <form action="/users/update/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
-            <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name%>" required>
-            <input type="email" name="email" placeholder="Your Email" value="<%= profile_user.email%>" required>
-            <input type="file" name="avatar" placeholder="Profile Picture">
-            <input type="submit" value="Update">
-        </form>
-       
-    <%}else{%>
-        <!-- else show only the profile info -->
-        <div>
-            <% if(profile_user.avatar == undefined){%>
-                <p><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="100"></p>
-            <% }else{ %>
-                <p><img src="<%= profile_user.avatar%>" alt="<%= profile_user.name%>" width="100"></p>
-            <% } %>
+        <div style="margin-bottom: 10px;" class="user-pic">
+            <div id="header-background">
+            </div>
+            <div id="profile">
+                <img src="<%= user.avatar%>" alt="<%= user.name%>" width="100">
+            </div>
+            <div style="text-align: center;" id="profile-details">
+                <h3><%= user.name%></h3>
+                <h5><%= user.email%></h5>
+                <div id="user-address">
+                    <% if(user.state){ %>
+                        <p><%= user.state%>,</p>
+                    <% } %>
+                    <% if(user.country){ %>
+                        <p><%= user.country%></p>
+                    <% } %>
+                </div>
+               
+            </div>
+            
 
-            <p><%= profile_user.name%></p>
-            <p><%= profile_user.email%></p>
         </div>
         
-        <% if(user){ %>
-            <% let isFriend = false %>
-            <!-- run for loop on user friendships array -->
+        <div id="user-information">
+            <h2>General Information</h2>
+            <form action="/users/update/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
+                <div class="two-field">
+                    <div>
+                        <p>Name</p>
+                        <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name%>" required>
+                    </div>
+                    
+                    <div>
+                        <p>Email</p>
+                        <input type="email" name="email" placeholder="Your Email" value="<%= profile_user.email%>" required>
+                    </div>    
+                </div>
 
-            <% for( friend of userfriend.friendships) {%>
-                <!-- check request sender.id == profile.id or request receiver.id == profile.id are same -->
-                <% if (friend.from_user == profile_user.id || friend.to_user == profile_user.id){ %>
-                    <% isFriend = true %>
-                <% } %>   
-            <% } %>
+                <div class="two-field">
+                    <div>
+                        <p>Birthday</p>
+                        <input type="date" name="birthday" value="<%= profile_user.birthday%>">
+                    </div>
+                    
+                    <div>
+                        <p>Gender</p>
+                        <select name="genders" id="select">
+                            <option value="male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>    
+                </div>
 
-            <!-- if exist in user friend array then show these button -->
-            <% if(isFriend){ %>
-                <a class="add-friend-btn" href="/users/friend/<%= profile_user.id %>">
-                    <button type="submit">Remove Friend</button>
-                </a>
-            <% }else{ %>
-                <a class="add-friend-btn" href="/users/friend/<%= profile_user.id %>">
-                    <button type="submit">Add Friend</button>
-                </a>
-            <% } %>
-        <% } %>
+                <div class="two-field">
+                    <div>
+                        <p>Phone</p>
+                        <input type="number" name="phone" placeholder="Your Number" value="<%= profile_user.phone%>" required>
+                    </div>
+                    
+                    <div>
+                        <p>Profile</p>
+                        <input type="file" name="avatar" placeholder="Profile Picture">
+                    </div>    
+                </div>
+
+                <div class="two-field">
+                    <div>
+                        <p>Password</p>
+                        <input type="text" name="password" placeholder="Your password" value="<%= profile_user.password %>" required>
+                    </div>
+                    
+                    <div>
+                        <p>Confirm Password</p>
+                        <input type="text" name="confirm_password" placeholder="confirm password" value="<%= profile_user.password %>" required>
+                    </div>    
+                </div>
+
+                <h3>Address</h3>
+
+                <div class="two-field">
+                    <div>
+                        <p>Address</p>
+                        <input type="text" name="address" placeholder="Enter your home address" value="<%= profile_user.address%>">
+                    </div>
+                    
+                    <div>
+                        <p>City</p>
+                        <input type="text" name="city" placeholder="City" value="<%= profile_user.city%>">
+                    </div>    
+                </div>
+
+                <div class="two-field">
+                    <div>
+                        <p>District</p>
+                        <input type="text" name="district" placeholder="District" value="<%= profile_user.district%>">
+                    </div>
+                    
+                    <div>
+                        <p>Zip</p>
+                        <input type="number" name="zip" placeholder="Zip" value="<%= profile_user.zip%>">
+                    </div>    
+                </div>
+
+                <div class="two-field">
+                    <div>
+                        <p>State</p>
+                        <input type="text" name="state" placeholder="State" value="<%= profile_user.state%>">
+                    </div> 
+                    <div>
+                        <p>Country</p>
+                        <input type="text" name="country" placeholder="Country" value="<%= profile_user.country%>">
+                    </div>   
+                </div>
+                
+                <div>
+                    <input type="submit" value="Save All">
+                </div>
+            </form>    
+        </div>
+    <%}else{%>
+        <!-- else show only the profile info -->
+        <div style="height: 80vh; margin-top:10px;" id="another-user">
+            <div style="margin-bottom: 10px;" class="user-pic user-biodata">
+                <div id="header-background">
+                </div>
+
+                <div id="profile">
+                    <% if(profile_user.avatar == undefined){%>
+                        <p><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="100"></p>
+                    <% }else{ %>
+                        <p><img src="<%= profile_user.avatar%>" alt="<%= profile_user.name%>" width="100"></p>
+                    <% } %>
+                </div>
+
+                <div style="text-align: center;" id="profile-details">
+                    <div>
+                        <h3><%= profile_user.name%></h3>
+                        <h5><%= profile_user.email%></h5>
+                    </div>
+
+                    <div id="user-address">
+                        <% if(profile_user.state){ %>
+                            <p><%= profile_user.state%>,</p>
+                        <% } %>
+                        <% if(profile_user.country){ %>
+                            <p><%= profile_user.country%></p>
+                        <% } %>
+                    </div>
+                </div>
+
+                <% if(user){ %>
+                    <% let isFriend = false %>
+                    <!-- run for loop on user friendships array -->
+        
+                    <% for( friend of userfriend.friendships) {%>
+                        <!-- check request sender.id == profile.id or request receiver.id == profile.id are same -->
+                        <% if (friend.from_user == profile_user.id || friend.to_user == profile_user.id){ %>
+                            <% isFriend = true %>
+                        <% } %>   
+                    <% } %>
+                    
+                    <div style="display: flex;" id="btn">
+                        <div>
+                            <!-- if exist in user friend array then show these button -->
+                            <% if(isFriend){ %>
+                                <a class="add-friend-btn" href="/users/friend/<%= profile_user.id %>">
+                                    <i class="fa-solid fa-user-xmark"><button type="submit">Remove Friend</button></i>
+                                </a>
+                            <% }else{ %>
+                                <a class="add-friend-btn" href="/users/friend/<%= profile_user.id %>">
+                                    <i class="fa-solid fa-user-plus"><button type="submit">Add Friend</button></i>
+                                </a>
+                            <% } %>
+                        </div>
+
+                        <div>
+                            <a class="send-mes-btn" href="">
+                            <button type="submit">Send Message</button>
+                            </a>
+                        </div>
+
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+        <section id="feed-posts">
+            <div id="posts-list-controller">
+                <ul style="list-style: none; padding-left: 0;">
+                    <% for(post of userPost){ %>
+                        <% if(profile_user.id == post.user.id){%>
+                            <%- include('_post'); %>
+                        <%} %>
+                    <%} %>
+                </ul>
+            </div>
+        </section>
     <% } %>
 </div>
 
 <script src="/js/user_friend.js"></script>
+<script src="/js/home_like.js"></script>
+<script src="/js/home_post_comment.js"></script>
+<script src="/js/home_post.js"></script>
+<script>
+    $('.toggle-like-button').each(function(){
+        let self = this;
+        let toggleLike = new ToggleLike(self);
+    });
+</script>
 

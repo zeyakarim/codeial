@@ -21,7 +21,7 @@ module.exports.create = async function(req,res){
                 user: req.user._id
             });
 
-            console.log(req.file);
+            // console.log(req.file);
             if(req.file){
                 // first it will go userSchema.uploadedAvatar function and save 
                 // the file destination and filename in the localstorage/multer storage

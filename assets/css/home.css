@@ -124,9 +124,10 @@
         #main-container #feed-posts #posts-list-controller ul .post-container .border-lk-cmt {
           display: flex;
           padding: 3px 0px;
-          border-top: 1px solid gray;
+          border-top: 1px solid #9a9090;
           color: gray;
-          justify-content: space-around; }
+          justify-content: space-around;
+          margin: 0px 20px; }
           #main-container #feed-posts #posts-list-controller ul .post-container .border-lk-cmt .toggle-like-button {
             display: flex;
             text-decoration: none;
@@ -134,7 +135,7 @@
           #main-container #feed-posts #posts-list-controller ul .post-container .border-lk-cmt .comment-btn {
             cursor: pointer; }
         #main-container #feed-posts #posts-list-controller ul .post-container p {
-          margin: 8px; }
+          margin: 10px 8px; }
         #main-container #feed-posts #posts-list-controller ul .post-container .color {
           color: #FFFFFF;
           background-color: midnightblue;
@@ -142,9 +143,10 @@
           font-size: 10px;
           padding: 4px; }
     #main-container #feed-posts .post-comments {
-      padding-left: 10px;
       border-top: 1px solid gray;
-      display: none; }
+      display: none;
+      border-top: 1px solid #9a9090;
+      margin: 0px 20px; }
       #main-container #feed-posts .post-comments .img-container {
         margin-top: 10px; }
       #main-container #feed-posts .post-comments .comments-form {

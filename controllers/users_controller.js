@@ -14,11 +14,21 @@ const crypto = require('crypto');
 
 // import the friendship module
 const Friendship = require('../models/friendship');
+const Post = require('../models/post');
 
 
 // render profile page
 module.exports.profile = async function(req,res){
     let user = await User.findById(req.params.id);
+    let post = await Post.find({})
+    .sort('-createdAt')
+    .populate('user')
+    .populate({
+        path: 'comments',
+        populate :{
+            path: 'user'
+        }
+    }).populate('likes');
 
     let userfriend;
     if(req.user){
@@ -28,7 +38,8 @@ module.exports.profile = async function(req,res){
     return res.render('user_profile',{
         title: 'User Profile',
         profile_user: user,
-        userfriend: userfriend
+        userfriend: userfriend,
+        userPost : post
     });
 }
 
@@ -43,10 +54,23 @@ module.exports.update = async function(req,res){
                     console.log('*****Multer Error: ',err);
                 }
                 console.log(req.body);
-                user.name = req.body.name;
-                user.email = req.body.email;
+                if(req.body.password == req.body.confirm_password){
+                    user.name = req.body.name;
+                    user.email = req.body.email;
+                    user.birthday = req.body.birthday;
+                    user.gender = req.body.genders;
+                    user.phone = req.body.phone;
+                    user.address = req.body.address;
+                    user.city = req.body.city;
+                    user.district = req.body.district;
+                    user.zip = req.body.zip;
+                    user.state = req.body.state;
+                    user.country = req.body.country;
+                }
+                
 
-                console.log(req.file);
+
+                // console.log(req.file);
                 if(req.file){
                     // first it will go userSchema.uploadedAvatar function and save 
                     // the file destination and filename in the localstorage/multer storage
