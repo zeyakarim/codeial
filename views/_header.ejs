@@ -5,22 +5,43 @@
     </div>
     <ul>
         <% if (user){%>
-            <li>
-                <a href="/users/profile/<%=user._id%>">
-                    <%= user.name%>
+            <li class="home">
+                <a href="/">
+                    <i class="fa-solid fa-house-chimney"></i>
                 </a>
             </li>
-            <li>
-                <a href="/users/sign-out">Sign Out</a>
+            <li class="home">
+                <a href="">
+                    <i class="fa-solid fa-user-group"></i>
+                </a>
             </li>
+            <div style="display: flex;">
+                <li style="display: flex;" class="li">
+                    <a href="/users/profile/<%=user._id%>">
+                        <%= user.name%>
+                    </a>
+                    <% if(user.avatar == undefined){%>
+                        <div style="margin-left: 10px;" class="userIcon">
+                            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="30">
+                        </div>
+                    <% }else{ %>
+                        <div style="margin-left: 10px;" class="userIcon">
+                            <img src="<%= user.avatar %>" alt=" <%= user.name%>" width="30px">
+                        </div>
+                    <% } %>
+                </li>
+                <li class="li">
+                    <a href="/users/sign-out">Sign Out</a>
+                </li>
+            </div>
 
         <% }else{ %>
             <!-- <div id="sign-in-and-sign-out"> -->
-                <li>
+                <li class="li">
                     <a href="users/sign-in">Sign In</a>
                 </li>
     
-                <li>
+                <li class="li">
                     <a href="/users/sign-up">Sign Up</a>
                 </li>
             <!-- </div> -->

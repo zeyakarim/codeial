@@ -66,9 +66,10 @@
                     i{
                         border-bottom: 1px solid gray;
                         color: #D94DF4;
+                        width: 80%;  
                     }
                     input{
-                        width: 300px;
+                        width: 94%;
                         border: 0;
                         // background-color: #e4e9ed;
                         font-size: 15px;
@@ -96,6 +97,76 @@
                 border-radius: 20px;
                 margin-top: 15px;
                 cursor: pointer;
+            }
+        }
+    }
+    
+    @media screen and(max-width: 1200px) {
+        #sign-up-page{
+            width: 85%;
+            #sign-up-form{
+                #sign-up{
+                    i{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        
+    }
+    @media screen and (max-width:950px) {
+        #sign-up-page{
+            #sign-up-form{
+                padding-left: 5%;
+                #btn{
+                    width: 70%;
+                }
+                #sign-up{
+                    div{
+                        i{
+                            width: 90%;
+                        }
+
+                    };
+                }
+            }
+        }
+    }
+
+    @media screen and(max-width: 800px) {
+        #sign-up-page{
+            #sign-up-form{
+                padding-left: 5%;
+                width: 75%;
+                #sign-up{
+                    div{
+                        i{
+                            width: 90%;
+                        }
+
+                    };
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:600px) {
+        #sign-up-page{
+            width: 95%;
+            #img-container{
+                display: none;
+            }
+            #sign-up-form{
+                padding-left: 1%;
+                width: 70%;
+                #sign-up{
+                    div{
+                        i{
+                            width: 100%;
+                        }
+
+                    };
+                }
             }
         }
     }

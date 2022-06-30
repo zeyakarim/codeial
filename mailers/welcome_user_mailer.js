@@ -1,7 +1,7 @@
 const nodeMailer =require('../config/nodemailer');
 
 exports.newUser = (user) => {
-    console.log('Inside new post mailer',user);
+    // console.log('Inside new post mailer',user);
 
     let htmlString = nodeMailer.renderTemplate({user: user},'/users/new_user.ejs');
 
