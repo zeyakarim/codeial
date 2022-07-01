@@ -165,6 +165,31 @@
                             margin: 14px 8px 6px;
                         }
                     }
+                    .add-menu{
+                        margin-top: 10px;
+                        .menu{
+                            position: relative;
+                            top: 10px;
+                            ul{
+                                position: absolute;
+                                top: 10px;
+                                right: 18px;
+                                background: gainsboro;
+                                /* text-align: center; */
+                                padding: 0;
+                                padding: 10px;
+                                li{
+                                    a{
+                                        color: black;
+                                        text-decoration: none;
+                                    }
+                                }
+                            }
+                        }
+                        i{
+                            cursor: pointer;
+                        }
+                    }
                     .post-comments{
                         img{
                             border-radius: 50%;
@@ -365,8 +390,7 @@
         #user-container:hover{
             overflow-y: auto;
         } 
-       
-        
+
         a{
             text-decoration: none;
             // color: darkblue;

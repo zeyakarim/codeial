@@ -8,7 +8,8 @@
 
             // pass this previous form inside this new FormData object this will contain all data
             let formData = new FormData(form);
-        
+            
+            
             $.ajax({
                 url: '/posts/create',
                 method: 'POST',
@@ -18,14 +19,21 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                    console.log(data);
+                    // console.log(data);
+                    // console.log($('#new-post-form .inputfield').val(''));
+                    // set input value to empty
+                    $('#new-post-form .inputfield').val('');
+
                     let newPost = newPostDom(data.data.post);
                     $('#posts-list-controller>ul').prepend(newPost);
 
                     // THIS .delete-post-button INSIDE newPost
                     deletePost($(' .delete-post-button',newPost));
 
+                    DeleteMenu($('.menu-button',newPost));
+
                     new ToggleLike($('.toggle-like-button',newPost));
+
 
                     // THEN SHOW THE FLATTY MESSAGE
                     new Noty({
@@ -45,19 +53,34 @@
 
     }
 
-
     // method to create a post in DOM
     let newPostDom = function(post){
         return $(`<li class="post-container" id="post-${post._id}" style="margin: 10px 0px; padding: 0px;">
                     <div style="padding:5px 18px;">
-                        <div class="dlt-btn-cntnr" style ="display: flex;">
-                            <img src="${ post.user.avatar}" alt="${post.user.name}" width="40">
-                            
-                            <h4>${ post.user.name }</h4>
-                            <small style="margin-top: 14px;">
-                                <a class="delete-post-button" href="/posts/destroy/${post._id}">X</a>
-                            </small>
+                        <div style="display: flex; justify-content: space-between;">
+                            <div class="dlt-btn-cntnr" style ="display: flex;">
+                                ${post.user.avatar ? 
+                                    `<img src="${ post.user.avatar}" alt="${post.user.name}" width="40"></img>`
+                                : '<img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="40">'}
+                                
+                                <h4 style='margin: 13px 8px 0px;'>${ post.user.name }</h4>
+                            </div>
+
+                            <div class='add-menu'>
+                                <div class="menu" id="${post._id}" style="display: none;">
+                                    <ul>
+                                        <li>
+                                            <a class="delete-post-button" href="/posts/destroy/${post._id}">Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                
+                                <div class="menu-button" id="${post._id}" data-toggles="false">
+                                    <i class="fa-solid fa-ellipsis-h"></i>
+                                </div>
+                            </div>
                         </div>
+
                         <p>${ post.content }</p>
                     </div>
                     
@@ -69,9 +92,11 @@
                    
                     
                     <div class="like-comment-box" id="${post._id}">
-                        <p>
-                            ${post.likes.length} Likes
-                        </p>
+                        ${post.likes.length ? 
+                            `<p>
+                                ${post.likes.length} Likes
+                            </p>`
+                        : ''}
                     </div>
 
                     <div class="border-lk-cmt">
@@ -116,7 +141,51 @@
                 </li>`);
     }
 
-    
+    // ADD SIDE MENU FOR DELETE
+    let DeleteMenu = function(deletebtn){
+
+        // ADD CLICK EVENT ON MENU
+        $(deletebtn).click(function(btn){
+            
+            // LETS STORE THE TARGET BUTTON ID
+            let delBut = $(btn.currentTarget).attr('id');
+
+            // LETS STORE THE TARGET BUTTON data-toggles VALUES
+            let dataToggles = $(btn.currentTarget).attr('data-toggles');
+
+            // LET STORE THE ALL MENU
+            let menuBtn = $('.menu');
+
+            // RUN FOR LOOP IN MENUBUTTON
+            for (let i of menuBtn){
+
+                // LET ONE BY ONE STOE BUTTON ID
+                let button = $(i).attr('id');
+
+                // CHECK CLICK BUTTON AND MENUBUTTON ID BOTH ARE SAME
+                if(delBut == button){
+
+                    // ALSO CHECK data-toggles VALUES IS FALSE
+                    if(dataToggles == 'false'){
+
+                        // SHOWING THE MENU
+                        $(i).css('display','block');
+
+                        // SET THE data-toggles VALUES TO BE TRUE
+                        $(btn.currentTarget).attr('data-toggles',true);
+                    }else{
+                        // IF data-toggles VALUE IS TRUE THEN DISPLAY NONE
+                        $(i).css('display','none');
+
+                        // SET THE data-toggles VALUES IS TO BE FALSE
+                        $(btn.currentTarget).attr('data-toggles',false);
+                    }
+                }
+            }
+            
+        });
+    }
+
 
     // METHOD TO DELETE A POST FROM DOM
     let deletePost = function(deleteLink){
@@ -155,6 +224,12 @@
         deletePost(i);
     }
     
+    let newDeletePostButton = $('.menu-button');
+    for(let i of newDeletePostButton){
+        // console.log($(i).html());
+        DeleteMenu(i);
+    }
+
     // call this function
     createPost();
 }

@@ -1,3 +1,4 @@
+// const { count } = require("../../models/user");
 
 // CHANGE :: create a class to toggle likes when a link is clicked, using AJAX
 class ToggleLike{
@@ -12,9 +13,7 @@ class ToggleLike{
         $(this.toggler).click(function(e){
             e.preventDefault();
             let self = this;
-            // $(self).css('color','blue');
 
-            // this is a new way of writing ajax which you might've studied, it looks like the same as promises
             $.ajax({
                 type: 'POST',
                 url: $(self).attr('href'),
@@ -38,12 +37,19 @@ class ToggleLike{
 
                                 // if both are match then store the in countDecrease
                                 let countDecrease = parseInt($(i).text());
-                                countDecrease -= 1;
+                                // console.log(countDecrease);
+                                if(countDecrease == 1){
+                                    $(i).html('');
+                                }
+                                else{
+                                    countDecrease -= 1;
 
-                                // change the html value inside i.html
-                                $(i).html(`<p style="padding: 0px 18px;">
+                                    // change the html value inside i.html
+                                    $(i).html(`<p style="padding: 0px 18px;">
                                             <i class="fa-solid fa-thumbs-up color"></i> <span class="post-like">${countDecrease}</span>
                                         </p>`);
+                                }
+                                
                             }
                         }
                         // likesCount -= 1;
@@ -60,11 +66,16 @@ class ToggleLike{
                             if(commentLikeDecrement == data.likeable){
 
                                 let countLikeDecrease = parseInt($(i).text());
-                                console.log(countLikeDecrease);
-                                countLikeDecrease -= 1;
-                                $(i).html(`<span>
-                                                <i class="fa-solid fa-thumbs-up color"></i> ${countLikeDecrease} 
-                                        </span>`);
+                                // console.log(countLikeDecrease);
+                                if(countLikeDecrease == 1){
+                                    $(i).html('');
+                                }
+                                else{
+                                    countLikeDecrease -= 1;
+                                    $(i).html(`<span>
+                                                    <i class="fa-solid fa-thumbs-up color"></i> ${countLikeDecrease} 
+                                            </span>`);
+                                }
                             }
                         }
                         $(self).css('color','gray');
@@ -88,12 +99,20 @@ class ToggleLike{
 
                                 // if both are match then store the in countDecrease
                                 let countIncrease = parseInt($(i).text());
-                                countIncrease += 1;
 
-                                // change the html value inside i.html
-                                $(i).html(`<p style="padding: 0px 18px;">
+                                if(isNaN(countIncrease)){
+
+                                    $(i).html(`<p style="padding: 0px 18px;">
+                                                    <i class="fa-solid fa-thumbs-up color"></i> <span class="post-like"> ${1} </span>
+                                                </p>`)
+                                }else{
+                                    countIncrease += 1;
+
+                                    // change the html value inside i.html
+                                    $(i).html(`<p style="padding: 0px 18px;">
                                             <i class="fa-solid fa-thumbs-up color"></i> <span class="post-like"> ${countIncrease} </span>
                                         </p>`);
+                                }
                             }
                         }
 
@@ -107,14 +126,20 @@ class ToggleLike{
                             // console.log($(i).attr('id'));
                             let commentLikeIncrement =$(i).attr('id');
    
-                            if(commentLikeIncrement == data.likeable){
+                            if(commentLikeIncrement == data.likeable){  
 
                                 let countLikeIncrease = parseInt($(i).text());
-                                // console.log(countLikeDecrease);
-                                countLikeIncrease += 1;
-                                $(i).html(`<span>
+                                // console.log(countLikeIncrease);
+                                if(isNaN(countLikeIncrease)){
+                                    $(i).html(`<span>
+                                        <i class="fa-solid fa-thumbs-up color"></i> ${1} 
+                                    </span>`);
+                                }else{
+                                    countLikeIncrease += 1;
+                                    $(i).html(`<span>
                                                 <i class="fa-solid fa-thumbs-up color"></i> ${countLikeIncrease} 
                                         </span>`);
+                                }
                             }
                         }
                         $(self).css({color: 'midnightblue',fontWeight: '700'});
@@ -124,7 +149,7 @@ class ToggleLike{
 
             })
             .fail(function(errData) {
-                console.log('error in completing the request');
+                console.log('error in completing the request',errData);
             });
             
 
@@ -143,7 +168,7 @@ let commentbtnloop = function(showComment){
 
         // let store the data toggle value
         let showhidebtn = $(comment.currentTarget).attr('data-toggles');
-        console.log(click);
+        // console.log(click);
         // console.log(showhidebtn);
 
         // let store all postComments div
@@ -159,7 +184,7 @@ let commentbtnloop = function(showComment){
             if(show == click){
                 // also check data-toggle value is false
                 if(showhidebtn == 'false'){
-                    console.log(show);
+                    // console.log(show);
                     // then show the postComment click div display block
                     $(post).css('display','block');
                     // set the data-toggles value to be true

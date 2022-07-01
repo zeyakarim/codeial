@@ -14,6 +14,8 @@
                 // WE NEED TO SEND THE DATA,THAT WE ARE CREATING COMMENT
                 data: $(newCommentForm).serialize(),
                 success: function(data){
+                    console.log(data);
+                    // console.log($(newCommentForm));
                     let newComment = newCommentDom(data.data.comment);
                     
                     // IT WILL APPEND THE COMMENT INSIDE THE POST 
@@ -44,9 +46,13 @@
         return $(`<li id="comment-${comment._id}">
 
                     <div style="display: flex;">
-                        <p>
-                            <img src="${comment.user.avatar}" alt="${comment.user.name}" width="30">
-                        </p>
+                        ${comment.user.avatar ? 
+                            `<p>
+                                <img src="${comment.user.avatar}" alt="${comment.user.name}" width="30">
+                            </p>`
+                        : `<p>
+                                <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="30"> 
+                            </p>`}
                         <div class="comment-details">
                             <h4 style="margin: 0;">
                             ${comment.user.name}
@@ -65,13 +71,17 @@
 
                         </div>
                     </div>
-                    <div style="margin-left: 56px; font-size: 14px;">  
+                    <div style="margin-left: 56px; font-size: 14px;"> 
                         <a class="toggle-like-button cmt-clr" data-likes="${comment.likes.length}" href="/likes/toggle/?id=${comment._id}&type=Comment">
                             <span>Like</span>
                         </a>
+                        
                         <span class="comment-like" id="${comment._id}">
-                            <i class="fa-solid fa-thumbs-up color"></i> ${comment.likes.length}
+                            ${comment.likes.length ? 
+                            `<i class="fa-solid fa-thumbs-up color"></i> ${comment.likes.length}`
+                            : ''}
                         </span>
+                        
                     </div>
                 </li>`);
     }
