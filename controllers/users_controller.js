@@ -28,7 +28,12 @@ module.exports.profile = async function(req,res){
         populate :{
             path: 'user'
         }
-    }).populate('likes');
+    }).populate({
+        path: 'likes',
+        populate: {
+            path: 'user'
+        }
+    });
 
     let userfriend;
     if(req.user){

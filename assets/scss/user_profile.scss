@@ -273,41 +273,84 @@
                             border-radius: 50%;
                         }
                         small{
-                            margin-top: 14px;
+                            display: inline-block;
+                            margin-top: 5px;
+                            margin-left: 8px;
+                            color: gray;
+                            font-size: 12px;
+                            span{
+                                display: inline-block;
+                                width: 3px;
+                                background-color: gray;
+                                height: 3px;
+                                border-radius: 50%;
+                                margin-bottom: 2px;
+                            }
                         }
                         
                         p{
                             margin: 14px 8px 6px;
                         }
                     }
+
                     .post-comments{
                         img{
                             border-radius: 50%;
                         }
                     }
-                    .like-comment-box{
-                        .post-like{
+                    .like-box{
+                        .like-comment-box{
+                            display: inline-block;
+                            padding: 0px 18px;
+                            .like{
+                                cursor: pointer;
+                                margin: 13px 8px;
+                            }
+                            .show-like-user{
+                                padding: 10px;
+                                display: inline-block;
+                                color: lightgray;
+                                background-color: black;
+                                opacity: 0.7;
+                                border-radius: 10px;
+                                display: none;
+                                transition: ease-in-out 2s;
+                                ul{
+                                    padding: 0;
+                                }
+                            }
+
+                            .post-like{
+                                color: gray;
+                            }
+                        }
+                        .user-like:hover .show-like-user{
+                            display: block;
+                            position: absolute;
+                            margin-left: -70px;
+                            margin-top: -6px;
+                        }
+
+                        .border-lk-cmt{
+                            display: flex; 
+                            padding: 3px 0px; 
+                            // border-bottom: 1px solid gray; 
+                            border-top: 1px solid #9a9090;
                             color: gray;
+                            justify-content: space-around;
+                            margin: 0px 20px;
+                            .toggle-like-button{
+                                display: flex;
+                                text-decoration: none;
+                                color: gray;
+                            }
+                            
+                            .comment-btn{
+                                cursor: pointer;
+                            }
                         }
                     }
-                    .border-lk-cmt{
-                        display: flex; 
-                        padding: 3px 0px; 
-                        // border-bottom: 1px solid gray; 
-                        border-top: 1px solid #9a9090;
-                        color: gray;
-                        justify-content: space-around;
-                        margin: 0px 20px;
-                        .toggle-like-button{
-                            display: flex;
-                            text-decoration: none;
-                            color: gray;
-                        }
-                        
-                        .comment-btn{
-                            cursor: pointer;
-                        }
-                    }
+                    
                     p{
                         margin: 10px 8px;
                     }

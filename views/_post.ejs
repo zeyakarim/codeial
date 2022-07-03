@@ -118,18 +118,19 @@
                 </p> 
             </div>
         <%}else{%>
-            <p>
-                <i class="fa-solid fa-thumbs-up color"></i> <%= post.likes.length%>
-            </p>
-            <div class="border-lk-cmt">
-                <p>
-                    <i class="fa-solid fa-thumbs-up"></i> Like
+            <div class="liked">
+                <p style="padding:0px 18px; ">
+                    <i class="fa-solid fa-thumbs-up color"></i> <%= post.likes.length%>
                 </p>
-                <p class="comment-btn">
-                    <i class="fa-solid fa-comment"></i>
-                </p>
+                <div class="border-lk-cmt">
+                    <p>
+                        <i class="fa-solid fa-thumbs-up"></i> Like
+                    </p>
+                    <p class="comment-btn">
+                        <i class="fa-solid fa-comment"></i>
+                    </p>
+                </div>
             </div>
-    
         <%}%>
     </div>
     

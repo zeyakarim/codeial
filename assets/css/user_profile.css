@@ -202,25 +202,58 @@
         #user-profile #feed-posts #posts-list-controller ul .post-container .dlt-btn-cntnr img {
           border-radius: 50%; }
         #user-profile #feed-posts #posts-list-controller ul .post-container .dlt-btn-cntnr small {
-          margin-top: 14px; }
+          display: inline-block;
+          margin-top: 5px;
+          margin-left: 8px;
+          color: gray;
+          font-size: 12px; }
+          #user-profile #feed-posts #posts-list-controller ul .post-container .dlt-btn-cntnr small span {
+            display: inline-block;
+            width: 3px;
+            background-color: gray;
+            height: 3px;
+            border-radius: 50%;
+            margin-bottom: 2px; }
         #user-profile #feed-posts #posts-list-controller ul .post-container .dlt-btn-cntnr p {
           margin: 14px 8px 6px; }
         #user-profile #feed-posts #posts-list-controller ul .post-container .post-comments img {
           border-radius: 50%; }
-        #user-profile #feed-posts #posts-list-controller ul .post-container .like-comment-box .post-like {
-          color: gray; }
-        #user-profile #feed-posts #posts-list-controller ul .post-container .border-lk-cmt {
+        #user-profile #feed-posts #posts-list-controller ul .post-container .like-box .like-comment-box {
+          display: inline-block;
+          padding: 0px 18px; }
+          #user-profile #feed-posts #posts-list-controller ul .post-container .like-box .like-comment-box .like {
+            cursor: pointer;
+            margin: 13px 8px; }
+          #user-profile #feed-posts #posts-list-controller ul .post-container .like-box .like-comment-box .show-like-user {
+            padding: 10px;
+            display: inline-block;
+            color: lightgray;
+            background-color: black;
+            opacity: 0.7;
+            border-radius: 10px;
+            display: none;
+            transition: ease-in-out 2s; }
+            #user-profile #feed-posts #posts-list-controller ul .post-container .like-box .like-comment-box .show-like-user ul {
+              padding: 0; }
+          #user-profile #feed-posts #posts-list-controller ul .post-container .like-box .like-comment-box .post-like {
+            color: gray; }
+        #user-profile #feed-posts #posts-list-controller ul .post-container .like-box .user-like:hover .show-like-user {
+          display: block;
+          position: absolute;
+          margin-left: -70px;
+          margin-top: -6px; }
+        #user-profile #feed-posts #posts-list-controller ul .post-container .like-box .border-lk-cmt {
           display: flex;
           padding: 3px 0px;
           border-top: 1px solid #9a9090;
           color: gray;
           justify-content: space-around;
           margin: 0px 20px; }
-          #user-profile #feed-posts #posts-list-controller ul .post-container .border-lk-cmt .toggle-like-button {
+          #user-profile #feed-posts #posts-list-controller ul .post-container .like-box .border-lk-cmt .toggle-like-button {
             display: flex;
             text-decoration: none;
             color: gray; }
-          #user-profile #feed-posts #posts-list-controller ul .post-container .border-lk-cmt .comment-btn {
+          #user-profile #feed-posts #posts-list-controller ul .post-container .like-box .border-lk-cmt .comment-btn {
             cursor: pointer; }
         #user-profile #feed-posts #posts-list-controller ul .post-container p {
           margin: 10px 8px; }
