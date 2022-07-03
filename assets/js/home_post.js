@@ -19,7 +19,7 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                    // console.log(data);
+                    console.log(data);
                     // console.log($('#new-post-form .inputfield').val(''));
                     // set input value to empty
                     $('#new-post-form .inputfield').val('');
@@ -59,11 +59,16 @@
                     <div style="padding:5px 18px;">
                         <div style="display: flex; justify-content: space-between;">
                             <div class="dlt-btn-cntnr" style ="display: flex;">
-                                ${post.user.avatar ? 
-                                    `<img src="${ post.user.avatar}" alt="${post.user.name}" width="40"></img>`
-                                : '<img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="40">'}
-                                
-                                <h4 style='margin: 13px 8px 0px;'>${ post.user.name }</h4>
+                                <div>
+                                    ${post.user.avatar ? 
+                                        `<img src="${ post.user.avatar}" alt="${post.user.name}" width="40"></img>`
+                                    : '<img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="codeial-default-logo" width="40">'}
+                                </div>
+
+                                <div>
+                                    <h4 style='margin: 13px 8px 0px;'>${ post.user.name }</h4>
+                                    <small>${timeAgo(post.createdAt)} <span></span> <i class="fa-solid fa-globe"></i></small>
+                                </div>
                             </div>
 
                             <div class='add-menu'>
@@ -90,31 +95,31 @@
                         </p>`
                     : ''}
                    
-                    
-                    <div class="like-comment-box" id="${post._id}">
-                        ${post.likes.length ? 
-                            `<p>
-                                ${post.likes.length} Likes
-                            </p>`
-                        : ''}
-                    </div>
+                    <div class="like-box">
+                        <div class="like-comment-box" id="${post._id}">
+                            ${post.likes.length ? 
+                                `<p>
+                                    ${post.likes.length} Likes
+                                </p>`
+                            : ''}
+                        </div>
 
-                    <div class="border-lk-cmt">
-                      
-                        <a class="toggle-like-button" data-likes="${post.likes.length}" href="/likes/toggle/?id=${post._id}&type=Post">
-                            <p>
-                                <i class="fa-solid fa-thumbs-up"></i>
-                            </p>
-                            <p style="margin-left: 0;">
-                                Likes
-                            </p>
-                        </a>
-                        
-                        <p class="comment-btn" id="${ post._id }" data-toggles="false">
-                            <i class="fa-solid fa-comment"></i>
-                        </p> 
-                    </div>     
-                    
+                        <div class="border-lk-cmt">
+                            
+                            <a class="toggle-like-button" data-likes="${post.likes.length}" href="/likes/toggle/?id=${post._id}&type=Post">
+                                <p>
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                </p>
+                                <p style="margin-left: 0;">
+                                    Likes
+                                </p>
+                            </a>
+                            
+                            <p class="comment-btn" id="${ post._id }" data-toggles="false">
+                                <i class="fa-solid fa-comment"></i>
+                            </p> 
+                        </div>     
+                    </div>
 
                     <div class="post-comments">
                         <div style="display: flex;">
@@ -218,6 +223,34 @@
         });
     }
 
+    timeAgo = function(date){
+       console.log(date);
+        var ms = (new Date()).getTime() - (new Date(date)).getTime();
+        var seconds = Math.floor(ms / 1000);
+        var minutes = Math.floor(seconds / 60);
+        var hours = Math.floor(minutes / 60);
+        var days = Math.floor(hours / 24);
+        var months = Math.floor(days / 30);
+        var years = Math.floor(months / 12);
+
+        if (ms === 0) {
+            return 'Just now';
+        } if (seconds < 60) {
+            return seconds + 's';
+        } if (minutes < 60) {
+            return minutes + 'm';
+        } if (hours < 24) {
+            return hours + 'h';
+        } if (days < 30) {
+            return days + 'd';
+        } if (months < 12) {
+            return months + 'm';
+        } else {
+            return years + 'y';
+        }
+
+    }
+
     // method to iterate over all post  delete button
     let deletePostButton =$('.delete-post-button');
     for(let i of deletePostButton){
@@ -229,6 +262,13 @@
         // console.log($(i).html());
         DeleteMenu(i);
     }
+
+
+    
+    // console.log(timeAgo(new Date()));
+
+
+
 
     // call this function
     createPost();

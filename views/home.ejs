@@ -1,3 +1,4 @@
+<link rel="shortcut icon" type="image/jpg" href="https://www.pngitem.com/pimgs/m/70-707661_letter-c-png-circle-transparent-png.png">
 <link rel="stylesheet" href="/css/home.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
 
@@ -94,7 +95,7 @@
             <div id="posts-list-controller">
                 <ul style="list-style: none; padding-left: 0;">
                     <% for (post of posts){%>
-                       
+
                         <%- include('_post'); %>
                        
                     <%}%>
@@ -127,8 +128,10 @@
         
     </section>
 
-
-    <%- include('_chat_box'); %>
+    <div style="display: none;">
+        <%- include('_chat_box'); %>
+    </div>
+    
 
 
 </div>
