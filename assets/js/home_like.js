@@ -45,7 +45,7 @@ class ToggleLike{
                                     countDecrease -= 1;
 
                                     // change the html value inside i.html
-                                    $(i).html(`<p>
+                                    $(i).html(`<p style="margin: 13px 8px">
                                             <i class="fa-solid fa-thumbs-up color"></i> <span class="post-like">${countDecrease}</span>
                                         </p>`);
                                 }
@@ -102,14 +102,14 @@ class ToggleLike{
 
                                 if(isNaN(countIncrease)){
 
-                                    $(i).html(`<p>
+                                    $(i).html(`<p style="margin: 13px 8px">
                                                     <i class="fa-solid fa-thumbs-up color"></i> <span class="post-like"> ${1} </span>
                                                 </p>`)
                                 }else{
                                     countIncrease += 1;
 
                                     // change the html value inside i.html
-                                    $(i).html(`<p>
+                                    $(i).html(`<p style="margin: 13px 8px">
                                             <i class="fa-solid fa-thumbs-up color"></i> <span class="post-like"> ${countIncrease} </span>
                                         </p>`);
                                 }

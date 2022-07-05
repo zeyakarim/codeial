@@ -1,8 +1,11 @@
 // require mongoose library to connect the database
 const mongoose = require('mongoose');
 
+// require environment file
+const env = require('./environment');
+
 // connect to database
-mongoose.connect('mongodb://localhost/codeial_development');
+mongoose.connect(`mongodb://localhost/${env.db}`);
 
 // acquire the connection(check the connection is succesfull)
 const db = mongoose.connection;

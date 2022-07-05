@@ -1,5 +1,5 @@
 <link rel="shortcut icon" type="image/jpg" href="https://www.pngitem.com/pimgs/m/70-707661_letter-c-png-circle-transparent-png.png">
-<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="<%= assetPath('css/home.css') %>">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
 
 <div id="main-container">
@@ -135,9 +135,9 @@
 
 </div>
 
-<script src="/js/home_like.js"></script>
-<script src="/js/home_post_comment.js"></script>
-<script src="/js/home_post.js"></script>
+<script src="<%= assetPath('js/home_like.js') %>"></script>
+<script src="<%= assetPath('js/home_post_comment.js') %>"></script>
+<script src="<%= assetPath('js/home_post.js') %>"></script>
 
 <script>
     $('.toggle-like-button').each(function(){
@@ -148,7 +148,7 @@
 
 <!-- chat_engine file & socket.io cdn -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
-<script src="/js/chat_engine.js"></script>
+<script src="<%= assetPath('js/chat_engine.js') %>"></script>
 
 <!-- if user exist then call this class -->
 <% if(user){ %>
