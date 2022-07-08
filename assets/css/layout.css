@@ -1,15 +1,1 @@
-body::-webkit-scrollbar {
-  width: 8px; }
-
-body::-webkit-scrollbar-track {
-  border-radius: 6px; }
-
-body::-webkit-scrollbar-thumb {
-  border-radius: 8px;
-  background-color: gray; }
-
-body {
-  margin: 0;
-  font-family: sans-serif; }
-  body #layout-main {
-    padding-top: 4%; }
+body::-webkit-scrollbar{width:8px}body::-webkit-scrollbar-track{border-radius:6px}body::-webkit-scrollbar-thumb{border-radius:8px;background-color:gray}body{margin:0;font-family:sans-serif}body #layout-main{padding-top:4%}
