@@ -14,6 +14,8 @@ const rev = require('gulp-rev');
 // and all code contain one line
 const uglify = require('gulp-uglify-es').default;
 
+const pipeline = require('readable-stream').pipeline;
+
 // gulp-imgagemin compress the image file,like remove the space,do variable name shorter
 // and all code contain one line
 const imagemin = require('gulp-imagemin');
@@ -41,18 +43,19 @@ gulp.task('css',function(done){
 });
 
 // gulp compressed task is js
-gulp.task('js',function(done){
+gulp.task('js',function(){
     console.log('minifying js...');
-    gulp.src('./assets/**/*.js')
-    .pipe(uglify())
-    .pipe(rev())
-    .pipe(gulp.dest('./public/assets'))
-    .pipe(rev.manifest({
+    return pipeline(
+        gulp.src('./assets/**/*.js')
+        .pipe(uglify())
+        .pipe(rev())
+        .pipe(gulp.dest('./public/assets'))
+        .pipe(rev.manifest({
         cwd: 'public',
         merge: true
-    }))
-    .pipe(gulp.dest('./public/assets'));
-    done();
+        }))
+        .pipe(gulp.dest('./public/assets'))
+    )
 });
 
 
