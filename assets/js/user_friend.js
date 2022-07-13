@@ -3,7 +3,7 @@
 
     addFriend.click(function(e){
         e.preventDefault();
-        // console.log(addFriend.attr('href'))
+        console.log(addFriend.attr('href'))
         // console.log(addFriend.html())
 
         $.ajax({
@@ -18,7 +18,6 @@
             },error: function(err){
                 console.log(err);
             }
-            
-        })
-    })
+        });
+    });
 }
