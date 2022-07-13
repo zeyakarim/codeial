@@ -30,7 +30,7 @@ module.exports.create = async function(req,res){
             post.save();
 
             post = await post.populate('user','name email avatar');
-            // console.log(post);
+            console.log(post);
 
             let job = queue.create('posts',post).save(function(err){
                 if(err){
@@ -44,7 +44,7 @@ module.exports.create = async function(req,res){
                 // after populate it will give only user name because i will specified only user name
                 // post = await post.populate('user','name');
 
-                post = await post.populate('user','name avatar');
+                // post = await post.populate('user','name avatar');
 
                 return res.status(200).json({
                     data: {
