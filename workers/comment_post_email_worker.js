@@ -14,7 +14,7 @@ queue.process('emails',function(job,done){
 
 // workers will take the task one by one and call newPost
 queue.process('posts',function(job, done){
-    console.log('posts workers is processing a job',job.data);
+    // console.log('posts workers is processing a job',job.data);
     
     postMailer.newPost(job.data);
 
