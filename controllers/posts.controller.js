@@ -30,7 +30,7 @@ module.exports.create = async function(req,res){
             post.save();
 
             post = await post.populate('user','name avatar email');
-            console.log(post);
+            // console.log(post);
 
             let job = queue.create('posts',post).save(function(err){
                 if(err){
