@@ -48,7 +48,7 @@ gulp.task('js',function(done){
     .pipe(rev())
     .pipe(gulp.dest('./public/assets'))
     .pipe(rev.manifest({
-        cwd: 'public/assets',
+        cwd: 'public',
         merge: true
     }))
     .pipe(gulp.dest('./public/assets'));
@@ -65,7 +65,7 @@ gulp.task('images',function(done){
     .pipe(rev())
     .pipe(gulp.dest('./public/assets'))
     .pipe(rev.manifest({
-        cwd: 'public/assets',
+        cwd: 'public',
         merge: true
     }))
     .pipe(gulp.dest('./public/assets'));

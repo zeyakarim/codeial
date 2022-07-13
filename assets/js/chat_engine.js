@@ -8,7 +8,7 @@ class ChatEngine{
         //console.log(this);
 
         // then initiate the connection on which port socket.io server will run & call the chat_socket file connect subscriber & observer
-        this.socket = io.connect('http://54.242.175.106:5000');
+        this.socket = io.connect('http://34.203.40.85:5000');
 
         // if userEmail exist then call the connectionHandler function
         if(this.userEmail){
