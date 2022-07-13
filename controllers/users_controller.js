@@ -249,6 +249,7 @@ module.exports.updateNewPassword = async function(req,res){
 module.exports.friends = async function(req,res){
     try{
         // let friend;
+        // console.log(req.body)
         let request = false;
         let userfriend = await User.findById(req.user._id).populate('friendships');
 

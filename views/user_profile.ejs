@@ -206,10 +206,11 @@
     <% } %>
 </div>
 
-<script src="/js/user_friend.js"></script>
-<script src="/js/home_like.js"></script>
-<script src="/js/home_post_comment.js"></script>
-<script src="/js/home_post.js"></script>
+<script src="<%= assetPath('js/user_friend.js') %>"></script>
+<script src="<%= assetPath('js/home_like.js') %>"></script>
+<script src="<%= assetPath('js/home_post_comment.js') %>"></script>
+<script src="<%= assetPath('js/home_post.js') %>"></script>
+
 <script>
     $('.toggle-like-button').each(function(){
         let self = this;
