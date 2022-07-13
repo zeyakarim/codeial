@@ -1,7 +1,7 @@
 const nodeMailer =require('../config/nodemailer');
 
 exports.newPost = (post) => {
-    // console.log('Inside new post mailer',post);
+    console.log('Inside new post mailer',post);
 
     let htmlString = nodeMailer.renderTemplate({post: post},'/posts/new_post.ejs');
 
