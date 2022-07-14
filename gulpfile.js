@@ -32,8 +32,8 @@ gulp.task('css',function(done){
     gulp.src('./assets/**/*.css')
     .pipe(rev())
     .pipe(gulp.dest('./public/assets'))
-    .pipe(rev.manifest({
-        cwd: 'public',
+    .pipe(rev.manifest('public/assets/rev-manifest.json',{
+        base: './public/assets',
         merge: true
     }))
     .pipe(gulp.dest('./public/assets'));
@@ -47,13 +47,12 @@ gulp.task('js',function(done){
     .pipe(uglify())
     .pipe(rev())
     .pipe(gulp.dest('./public/assets'))
-    .pipe(rev.manifest({
-        cwd: 'public',
+    .pipe(rev.manifest('public/assets/rev-manifest.json',{
+        base: './public/assets',
         merge: true
     }))
     .pipe(gulp.dest('./public/assets'));
     done();
-
 });
 
 
@@ -64,8 +63,8 @@ gulp.task('images',function(done){
     .pipe(imagemin())
     .pipe(rev())
     .pipe(gulp.dest('./public/assets'))
-    .pipe(rev.manifest({
-        cwd: 'public',
+    .pipe(rev.manifest('public/assets/rev-manifest.json',{
+        base: './public/assets',
         merge: true
     }))
     .pipe(gulp.dest('./public/assets'));
@@ -74,8 +73,7 @@ gulp.task('images',function(done){
 
 // empty the public/assets diretory
 gulp.task('clean:assets',function(done){
-    // del.sync('./public/assets');
-    del.sync(['./public/assets'], { force:true });
+    del.sync('./public/assets');
     done();
 });
 
