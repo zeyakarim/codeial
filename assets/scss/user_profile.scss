@@ -185,6 +185,12 @@
         }
     }
 
+    @media screen and (max-width: 1050px) {
+        #user-information{
+            width: 60%;
+        }
+    }
+
     #feed-posts{
         width: 50%;
         // padding: 10px 40px;
