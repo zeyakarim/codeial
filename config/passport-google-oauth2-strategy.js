@@ -21,7 +21,7 @@ passport.use(new googleStrategy({
                 return;
             }
             // console.log(accessToken, refreshToken);
-            // console.log(profile);
+            // console.log(user);
 
             // if found user, then set it as req.user
             if(user){
