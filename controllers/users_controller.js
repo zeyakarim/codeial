@@ -19,32 +19,37 @@ const Post = require('../models/post');
 
 // render profile page
 module.exports.profile = async function(req,res){
-    let user = await User.findById(req.params.id);
-    let post = await Post.find({})
-    .sort('-createdAt')
-    .populate('user')
-    .populate({
-        path: 'comments',
-        populate :{
-            path: 'user'
-        }
-    }).populate({
-        path: 'likes',
-        populate: {
-            path: 'user'
-        }
-    });
+    if(req.isAuthenticated()){
+        let user = await User.findById(req.params.id);
+        let post = await Post.find({})
+        .sort('-createdAt')
+        .populate('user')
+        .populate({
+            path: 'comments',
+            populate :{
+                path: 'user'
+            }
+        }).populate({
+            path: 'likes',
+            populate: {
+                path: 'user'
+            }
+        });
 
-    let userfriend;
-    if(req.user){
-        userfriend = await User.findById(req.user._id).populate({path: 'friendships'})
+        let userfriend;
+        if(req.user){
+            userfriend = await User.findById(req.user._id).populate({path: 'friendships'})
+        }
+        
+        return res.render('user_profile',{
+            title: 'User Profile',
+            profile_user: user,
+            userfriend: userfriend,
+            userPost : post
+        });
     }
-    
-    return res.render('user_profile',{
-        title: 'User Profile',
-        profile_user: user,
-        userfriend: userfriend,
-        userPost : post
+    return res.render('user_sign_in',{
+        title: 'Codeial | Sign In'
     });
 }
 
