@@ -10,6 +10,7 @@
 
 * Sign-Up Page
 
+
 ![Codeial SignUp Page](https://user-images.githubusercontent.com/103394954/179397795-2e3ea21f-5dd3-4015-8db6-17e29a1d7715.png)
 
 * Sign-In Page
