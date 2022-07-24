@@ -6,7 +6,7 @@ const crypto = require('crypto');
 passport.use(new facebookStrategy({
         clientID: "412426360783314",
         clientSecret: "acba49aa9cd1e5dd865a688eb1efd8e5",
-        callbackURL: "http://codeials.com/users/auth/facebook/callback",
+        callbackURL: "http://codeials.com/users/auth/facebook/callback/",
         profileFields: ['id', 'displayName', 'photos', 'email']
     },
 
