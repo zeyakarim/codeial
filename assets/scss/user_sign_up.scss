@@ -32,26 +32,21 @@
                 margin-top: 4px;
             }
             #authenticate{
-                display: flex;
-                width: 80%;
-                margin: auto;
-                p{
-                    margin: 5px;
-                }
-                .google{
-                    background-color: #e00a0a;
-                }
-                .facebook{
-                    background-color: #183153;
-                    i{
-                        padding: 0px 3px;
+                h3{
+                    font-size: 17px;
+                    display: inline-block;
+                    margin: 0;
+                    .google{
+                        padding: 1px 20px;
+                        text-decoration: none;
+                        display: flex;
+                        border: 1px solid gray;
+                        border-radius: 23px;
+                        .text{
+                            color: black;
+                            padding: 5px 10px;
+                        }
                     }
-                }
-                a{  
-                    padding: 10px;
-                    color: white;
-                    margin-right: 30px;
-                    border-radius: 50%;
                 }
             }
             #sign-up{

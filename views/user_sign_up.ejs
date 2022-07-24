@@ -15,17 +15,14 @@
         <div id="sign-up-form">
             <h2>Sign Up To Codeial</h2>
             <div id="authenticate">
-                <p>
+                <h3>
                     <a class="google" href="/users/auth/google">
-                        <i class="fa-brands fa-google"></i>
+                        <div style="margin-top: 5px;">
+                            <img src="https://www.fintechfutures.com/files/2016/03/google.png" width="20" alt="google+">
+                        </div>
+                        <div class="text">Contiue with Google</div>
                     </a>
-                    <!-- <a href="/users/auth/google">Google sign-up/sign-in</a> -->
-                </p>
-                <p>
-                    <a class="facebook" href="/users/auth/facebook">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
-                </p>
+                </h3>
             </div>
 
             <form action="/users/create" method="POST" id="sign-up">
@@ -53,7 +50,7 @@
                     <i class="fa-solid fa-lock"><input type="password" name="confirm_password" placeholder="Type your password" required></i>
                 </div>
                 
-                <input type="submit" value="Sign Up" id="btn">
+                <input type="submit" value="Create account" id="btn">
             </form>
 
         </div>

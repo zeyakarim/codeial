@@ -6,6 +6,18 @@
     <div id="sign-in-container">
         <div id="sign-in-form">
             <h1>Sign In To Codeial</h1>
+            <div id="authentication">
+
+                <h3>
+                    <a class="google" href="/users/auth/google">
+                        <div style="margin-top: 5px;">
+                            <img src="https://www.fintechfutures.com/files/2016/03/google.png" width="20" alt="google+">
+                        </div>
+                        <div class="text">Contiue with Google</div>
+                    </a>
+                </h3>
+  
+            </div>
 
             <form action="/users/create-session" method="post" id="sign-in">
                 <div class="input-box">
@@ -29,22 +41,6 @@
                 <input type="submit" value="Sign In" id="btn"></input>
             </form>
 
-            <div id="authentication">
-                <p>or Sign in using</p>
-                <div style="display: flex;">
-                    <p>
-                        <a class="google" href="/users/auth/google">
-                            <i class="fa-brands fa-google"></i>
-                        </a>
-                        <!-- <a href="/users/auth/google">Google sign-up/sign-in</a> -->
-                    </p>
-                    <p>
-                        <a class="facebook" href="/users/auth/facebook">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                    </p>
-                </div>
-            </div>
         </div>
         
         <div id="sign-in-container-box">
